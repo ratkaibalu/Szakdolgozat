@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "./styles/bootstrap-grid.min.css";
+
+body{
+    margin:0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --maincolor: #4C7E1E;
+    --maintextcolor: white;
+}
