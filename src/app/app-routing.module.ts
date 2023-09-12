@@ -8,19 +8,19 @@ import { TeammembersskillComponent } from './pages/teammembersskill/teammemberss
 import { LearningskillComponent } from './pages/learningskill/learningskill.component';
 import { LearningcategoryComponent } from './pages/learningcategory/learningcategory.component';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { NotfoundComponent } from './pages/notfound/notfound.component';
 
 const routes: Routes = [
-  { path: '', component: TeamviewComponent},
-  { path: 'learning', component: LearningComponent},
-  { path: 'learningskill', component: LearningskillComponent},
-  { path: 'learningcategory', component: LearningcategoryComponent},
-  { path: 'profile/:username', component: ProfileComponent},
-  { path: 'teammembers', component: TeammembersComponent},
-  { path: 'teammembersskill', component: TeammembersskillComponent},
+
+  { path: '', redirectTo: '/teams', pathMatch: 'full'},
+  { path: 'teams', component: TeamviewComponent},
   { path: 'teamtableview', component: TeamtableviewComponent},
-  { path: '**', component: NotfoundComponent},
-  
+  { path: 'learning', component: LearningComponent},
+  { path: 'learningskill/:skillid', component: LearningskillComponent},
+  { path: 'learningcategory/:categoryid', component: LearningcategoryComponent},
+  { path: 'profile/:username', component: ProfileComponent},
+  { path: 'teammembers/:teamid', component: TeammembersComponent},
+  { path: 'teammembersskill/:teamid', component: TeammembersskillComponent},
+  { path: '**', redirectTo: '/teams', pathMatch: 'full'},
 ];
 
 @NgModule({

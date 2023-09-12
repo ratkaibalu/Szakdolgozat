@@ -1,0 +1,62 @@
+/* .cards {
+    margin-top: 20px;
+}
+
+.card {
+    background-color: #D9D9D9;
+    border-radius: 5px 5px 5px 5px;
+    height: 400px;
+    width: 23%;
+    float: left;
+    margin-right: 1%;
+    margin-left: 1%;
+    margin-bottom: 1%;
+} */
+.teamNameDiv {
+    background-color: var(--maincolor);
+    border-radius: 5px;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+.teamName {
+    color: var(--maintextcolor);
+    font-size: 26px;
+    vertical-align: middle;
+    line-height: 50px;
+    margin-left: 5px;
+}
+
+.memberName {
+    margin-left: 10px;
+    font-size: 1rem;
+}
+
+hr {
+    border: 1px solid #969696;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.addTeam {
+    float: left;
+    margin-left: 6.5%;
+    margin-top: 10%;
+}
+
+.rectangle {
+    width: 10rem;
+    --b: 10px; 
+    aspect-ratio: 1;
+    border: 10px solid #D9D9D9;
+    background:
+      conic-gradient(from 90deg at var(--b) var(--b),#D9D9D9 90deg,#fff 0) 
+      calc(100% + var(--b)/2) calc(100% + var(--b)/2)/
+      calc(50%  + var(--b))   calc(50%  + var(--b));
+    display: inline-block;
+}
+
+/* 
+.cards {
+    margin-top: 40px;
+} */

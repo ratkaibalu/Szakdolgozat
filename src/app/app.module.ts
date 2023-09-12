@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './shared/layout/header/header.component';
 import { LearningComponent } from './pages/learning/learning.component';
 import { TeamviewComponent } from './pages/teamview/teamview.component';
 import { TeamtableviewComponent } from './pages/teamtableview/teamtableview.component';
@@ -12,8 +12,9 @@ import { LearningskillComponent } from './pages/learningskill/learningskill.comp
 import { LearningcategoryComponent } from './pages/learningcategory/learningcategory.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { NotfoundComponent } from './pages/notfound/notfound.component';
-import { InfobarComponent } from './components/infobar/infobar.component';
-import { CardComponent } from './components/card/card.component';
+import { InfobarComponent } from './shared/components/infobar/infobar.component';
+import { CardComponent } from './shared/components/card/card.component';
+import { MembercardComponent } from './shared/components/membercard/membercard.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { CardComponent } from './components/card/card.component';
     ProfileComponent,
     NotfoundComponent,
     InfobarComponent,
-    CardComponent
+    CardComponent,
+    MembercardComponent
   ],
   imports: [
     BrowserModule,

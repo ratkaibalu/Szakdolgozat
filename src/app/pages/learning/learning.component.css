@@ -1,20 +1,10 @@
 .container {
-    margin: 44px;
+    margin-top: 44px;
 }
 
-.pageName{
-    justify-content: center;
-    align-items: center;
-    background-color: #4C7E1E;
-    height: 10vh;
-    width: 50%;
-    margin-right: auto;
-    margin-left: auto;
-    text-align: center;
-    vertical-align: middle;
+.page-name{
     font-size: 46px;
-    border-radius: 10px;
-    line-height: 105px;
+    width: 50%;
 }
 
 .learningPage {
@@ -61,7 +51,7 @@
     vertical-align: middle;
     font-size: 30px;
     border-radius: 10px;
-    line-height: 52px;
+    line-height: 58px;
 }
 
 .categoryTable {
