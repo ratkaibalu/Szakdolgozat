@@ -1,13 +1,7 @@
-.container {
-    margin-top: 44px;
-}
-
 .page-name{
-    font-size: 46px;
-    width: 50%;
 }
 
-.learningPage {
+.learning-page {
     color: #FFFFFF;
     font-style: normal;
 }
@@ -15,33 +9,30 @@
 .search {
     text-align: center;
 }
-.inputField {
+.input-field {
     background-color: #D9D9D9;
     font-style: italic;
     width: 60%;
     height: 2vh;
     border-radius: 5px;
-    margin: 35px;
     border: 0;
 }
 
-.inputButton {
+.input-button {
     width: 150px;
     height: 4vh;
     color: #FFFFFF;
     background-color: #4C7E1E;
     border: 0;
     border-radius: 10px;
-    font-size: 25px;
+    max-width: 200px;
 }
 
 .categories {
     text-align: center;
-    margin: 50px;
 
 }
 .category {
-    margin: 30px;
     background-color: #4C7E1E;
     margin-right: auto;
     margin-left: auto;
@@ -49,20 +40,61 @@
     width: 40%;
     height: 5vh;
     vertical-align: middle;
-    font-size: 30px;
     border-radius: 10px;
     line-height: 58px;
 }
 
-.categoryTable {
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #4C7E1E;
+.skill {
+    background-color: #D9D9D9;
+    border-radius: 15px;
 }
 
-.tableRow, .tableColumn {
+.table-row, .table-column {
     padding: 40px;
     background-color: #D9D9D9;
     border-radius: 15px;
     height: 5px;
+}
+
+.category-grid{
+    max-width: 900px;
+    width: 100%;
+    margin:auto;
+}
+.category-grid .row {
+    gap: 10px;
+    row-gap: 15px;
+}
+
+.card-image-top{
+    background-image: url("data:image/svg+xml,http://www.haziallat.hu/viselkedes/a-kiskutyaja-korai-szocializalodasa/2911/1/kiskutya.jpg");
+}
+
+.accordion-item {
+    border-bottom: none;
+}
+
+.skill-row {
+    justify-content: space-between;
+}
+
+rect {
+    background-image: url("http://www.haziallat.hu/viselkedes/a-kiskutyaja-korai-szocializalodasa/2911/1/kiskutya.jpg");
+    background-position: center;
+        background-size: cover;        height: 50vh;
+        width: 100%;
+}
+
+@media (min-width: 768px) {
+    .col-md-5 {
+        width: 45%;
+    }
+
+
+}
+
+@media (max-width: 765px){
+        .category-grid .row{
+        row-gap: 5px;
+    }
 }

@@ -1,0 +1,18 @@
+.container {
+
+}
+.team-card-comp{
+}
+
+.teamview-row {
+    row-gap: calc(var(--bs-gutter-x));
+}
+
+@media only screen and (max-width: 575.9px) {
+    .container{
+        display:block;
+        justify-content:center;
+        padding: 5px;
+    }
+
+}

@@ -24,7 +24,7 @@
 }
 
 .profile-data {
-    margin: 20px;
+    margin: 1.25rem;
 }
 
 .availability {
@@ -52,6 +52,12 @@
     font-size: 18px;
 }
 
+.profile-button{
+    width: 8rem;
+    font-size: 1rem;
+    border-radius: 10px;
+}
+
 .my-skills-div {
     margin-top: 15px;
 }
@@ -74,16 +80,15 @@
 }
 
 .skills-div{
-    margin-left: 40px;
+    margin-left: 4rem;
     margin-top: 10px;
     font-size: 18px;
-    width: 70%;
     line-height: 25px;
 }
 
 .dot {
-    height: 18px;
-    width: 18px;
+    height: 1.125rem;
+    width: 1.125rem;
     background-color: var(--maincolor);
     border-radius: 50%;
     display: inline-block;
@@ -93,10 +98,33 @@
 .dots {
     line-height: 25px;
     margin-top: 5px;
-    margin-left: 10rem;
+    margin-left: 3rem;
 }
 
 .skills{
     float: left;
     line-height: 25px;
+}
+
+.row>* {
+    width: auto;
+}
+
+@media only screen and (max-width: 575.9px) {
+    .dots{
+        margin-left: 0rem;
+    }
+    .skills-div {
+        margin-left: 0rem;
+    }
+
+    .profile-name{
+        font-size: 1.75rem;
+    }
+
+    .profile-button{
+        width: 6rem;
+        font-size: 1rem;
+        border-radius: 10px;
+    }
 }

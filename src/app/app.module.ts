@@ -12,8 +12,8 @@ import { LearningskillComponent } from './pages/learningskill/learningskill.comp
 import { LearningcategoryComponent } from './pages/learningcategory/learningcategory.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { NotfoundComponent } from './pages/notfound/notfound.component';
-import { InfobarComponent } from './shared/components/infobar/infobar.component';
-import { CardComponent } from './shared/components/card/card.component';
+import { TeamInfobarComponent } from './shared/components/teaminfobar/teaminfobar.component';
+import { TeamCardComponent } from './shared/components/teamcard/teamcard.component';
 import { MembercardComponent } from './shared/components/membercard/membercard.component';
 
 @NgModule({
@@ -29,8 +29,8 @@ import { MembercardComponent } from './shared/components/membercard/membercard.c
     LearningcategoryComponent,
     ProfileComponent,
     NotfoundComponent,
-    InfobarComponent,
-    CardComponent,
+    TeamInfobarComponent,
+    TeamCardComponent,
     MembercardComponent
   ],
   imports: [
