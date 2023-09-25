@@ -1,13 +1,13 @@
 <div class="card">
-    <div class="col memberNameDiv">
-        <span class="memberName">{{ name }}</span>
+    <div class="col member-name-div">
+        <span class="fs-4 member-name">{{ name }}</span>
     </div>
     <div class="col tags" >
         <span class="tag" *ngFor="let tag of tags">{{ tag }}</span>
         
     </div>
     <hr>
-    <div class="col viewProfileDiv">
-        <span class="viewProfile">View profile</span>
+    <div class="col mb-2 mt-2 view-profile-div">
+        <span><a href="/profile/1" role="button" class="view-profile">View profile</a></span>
     </div>
 </div>

@@ -21,16 +21,43 @@ export class FakeMembersService {
         {
             id: 'fe',
             name: 'Sanyi',
-            skills: [{
-                name:'c++',
-                category: 'backend',
-                level: 3
-            },
-        {
-            name: 'Java',
-            category: 'backend',
-            level: 100
-        }],
+            skills: [
+                {
+                    name:'C++',
+                    category: 'backend',
+                    level: 3
+                },
+                {
+                    name: 'Java',
+                    category: 'backend',
+                    level: 100
+                },
+                {
+                    name: 'Angular',
+                    category: 'frontend',
+                    level: 100
+                },
+                {
+                    name: 'C#',
+                    category: 'backend',
+                    level: 100
+                },
+                {
+                    name: 'Python',
+                    category: 'backend',
+                    level: 100
+                },
+                {
+                    name: 'C',
+                    category: 'backend',
+                    level: 100
+                },
+                {
+                    name: 'React',
+                    category: 'frontend',
+                    level: 100
+                }
+            ],
             teamName: 'web1',
         },
         {
@@ -46,6 +73,16 @@ export class FakeMembersService {
         {
             id: 'fe',
             name: 'Anna',
+            skills: [{
+                name:'c++',
+                category: 'backend',
+                level: 3
+            },],
+            teamName: 'web4',
+        },
+        {
+            id: 'fe',
+            name: 'Pityuka',
             skills: [{
                 name:'c++',
                 category: 'backend',

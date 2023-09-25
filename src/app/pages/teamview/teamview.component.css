@@ -1,9 +1,3 @@
-.container {
-
-}
-.team-card-comp{
-}
-
 .teamview-row {
     row-gap: calc(var(--bs-gutter-x));
 }

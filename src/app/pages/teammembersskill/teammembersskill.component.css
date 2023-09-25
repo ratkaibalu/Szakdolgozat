@@ -1,0 +1,77 @@
+.info-bar-table{
+    background-color: var(--maincolor);
+    border-radius: 5px;
+    padding:10px;
+    margin: 10px;
+    line-height: 1;
+}
+
+.all-team-members {
+    color: white;
+}
+
+.table-div{
+    width: 90%;
+    margin-right: auto;
+    margin-left: auto;
+    overflow-y: auto;
+    text-wrap: nowrap;
+}
+
+.skill-name-header {
+    background-color: #E9E9E9;
+}
+
+.team-name-header, .team-member-name-header{
+    background-color: #C9C9C9;
+}
+
+.team-member-name {
+    background-color: #F2F2F2;
+}
+
+
+.explanation-table{
+    gap: 20px;
+}
+
+.explanation-table span {
+    color: white;
+}
+
+.explanation-span{
+    word-spacing: 0px;
+}
+
+.explanation-table div {
+    text-align: center;
+    border-radius: 5px;
+}
+.excelent-skill {
+    background-color: #44A460;
+}
+
+.good-skill {
+    background-color: #93D050;
+}
+
+.average-skill {
+    background-color: #FFC000;
+}
+.needs-training {
+    background-color: #FA5639;
+}
+
+@media (max-width: 575.9px) {
+    .explanation-table {
+        margin-top: 5px;
+        gap: 5px;
+    }
+
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+    .explanation-span{
+           word-spacing: 9999px;
+    }
+}
