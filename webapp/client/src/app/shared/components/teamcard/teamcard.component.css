@@ -1,16 +1,16 @@
 .team-name-div {
     background-color: var(--maincolor);
-    border-radius: 5px;
-    margin-bottom: 10px;
     text-align: center;
-    padding: 6.5px;
+    padding: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 .team-name {
     color: var(--maintextcolor);
     vertical-align: middle;
     line-height: 1;
-    font-size: 2rem;
+    font-size: 1.2rem;
     word-wrap: break-word; 
 }
 .bi-x-circle {
@@ -22,14 +22,12 @@ a {
     color: black;
 }
 .member-name {
-    margin-left: 10px;
-    font-size: 1.2rem;
+    font-size: 1rem;
     word-wrap: break-word;
 }
 
 .member-name-div {
     display: block;
-    border-bottom: 1px solid #dee2e6;;
 }
 
 .member-name-div:last-child{
@@ -50,16 +48,21 @@ hr {
 }
 
 .team-card {
-    background-color: #D9D9D9;
+    background-color: #fff;
     padding-right: 0px;
     padding-left: 0px;
-    border-radius: 5px;
+    border: 0px none;
+    box-shadow: rgba(65, 69, 88, 0.1) 0px 7px 14px 0px, rgba(0, 0, 0, 0.07) 0px 3px 6px 0px;
 }
 .team-name-editing{
     text-align: center;
     width: 70%;
     display: inline;
     justify-content: center;
+}
+
+.team-members-div {
+    padding: 13px 15px 15px 15px;
 }
 
 @media only screen and (max-width: 575.9px) {
