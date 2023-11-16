@@ -1,0 +1,36 @@
+<div class="table-div fs-6">
+    <table class="table skills-table">
+        <thead>
+            <tr>
+                <th class="team-member-name-header">Team Member</th>
+                <th class="team-member-name-header" *ngIf="teamId === null"> Team Name</th>
+                <th class="skill-name-header" *ngFor="let skill of allSkills">{{skill.skillName}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let member of memberTableCells$ | async">
+                <td class="team-member-name">{{ member.memberName }}</td>
+                <td class="team-member-name" *ngIf="teamId === null"> {{ member.teamName }}</td>
+                <td *ngFor="let skillCell of member.skillCells" [ngClass]="skillCell.cssClass">
+                    {{ skillCell.content }}
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="row explanation-table d-flex flex-column flex-sm-row mt-2 fs-6">
+    <div class="col excelent-skill align-middle">
+        <span class="explanation-span">Excelent Skill</span>
+    </div>
+    <div class="col good-skill">
+        <span class="explanation-span">Good Skill</span>
+    </div>
+    <div class="col average-skill">
+        <span class="explanation-span">Average Skill</span>
+    </div>
+    <div class="col needs-training">
+        <span class="explanation-span">Needs Training</span>
+    </div>
+</div>
+

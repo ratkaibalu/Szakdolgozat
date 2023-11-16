@@ -1,0 +1,23 @@
+<div class="background">
+    <span class="fs-2 evoSkills">EvoSkills</span>
+    <div class="container white-box">
+        <div class="row img-div">
+            <img src="https://yt3.ggpht.com/a/AATXAJwviSzg1iwOpvlu8-OxphO6lfga3zzVlek2XQ=s900-c-k-c0xffffffff-no-rj-mo" alt="evologo" class="mx-auto d-block evo-logo ">
+        </div>
+        <div class="row login-inputs mx-auto d-block ">
+            <span class="fs-3 login-title">Login</span>
+            <form (ngSubmit)="login()">
+                <div class="form-floating">
+                    <input type="email" class="form-control input-email" name="email" [(ngModel)]="email" required placeholder="e-mail">
+                    <label>Email address</label>
+                </div>
+                <div class="form-floating">
+                    <input type="password" class="form-control input-password" name="password" [(ngModel)]="password" required placeholder="password">
+                    <label>Password</label>
+                </div>
+               
+                <button type="submit" class="login-button btn btn-outline-success">Login</button>
+            </form>
+        </div>
+    </div>
+</div>

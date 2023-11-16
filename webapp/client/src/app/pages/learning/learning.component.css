@@ -1,0 +1,113 @@
+.page-name{
+    height: 4rem;
+}
+
+.learning-page {
+    color: #FFFFFF;
+    font-style: normal;
+}
+
+.search {
+    text-align: center;
+}
+.input-field {
+    background-color: #D9D9D9;
+    font-style: italic;
+    width: 60%;
+    height: 2rem;
+    border-radius: 5px;
+    border: 0;
+}
+
+.input-button {
+    width: 150px;
+    height: 3rem;
+    color: #FFFFFF;
+    background-color: #4C7E1E;
+    border: 0;
+    border-radius: 10px;
+    max-width: 200px;
+}
+
+.categories {
+    text-align: center;
+
+}
+.category {
+    background-color: #4C7E1E;
+    margin-right: auto;
+    margin-left: auto;
+    color: #FFFFFF;
+    width: 40%;
+    height: 5vh;
+    vertical-align: middle;
+    border-radius: 10px;
+    line-height: 58px;
+}
+
+.dropdown-link {
+    background-color: #4C7E1E;
+}
+.dropdown-icon {
+    color:white;
+}
+.skill {
+    background-color: #D9D9D9;
+    border-radius: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.table-row, .table-column {
+    padding: 40px;
+    background-color: #D9D9D9;
+    border-radius: 15px;
+    height: 5px;
+}
+
+.category-grid{
+    max-width: 900px;
+    width: 100%;
+    margin:auto;
+}
+.category-grid .row {
+    gap: 10px;
+    row-gap: 15px;
+}
+
+.card-image-top{
+    background-image: url("data:image/svg+xml,http://www.haziallat.hu/viselkedes/a-kiskutyaja-korai-szocializalodasa/2911/1/kiskutya.jpg");
+}
+
+.accordion-item {
+    border-bottom: none;
+}
+
+.accordion-collapse {
+    text-align: center;
+}
+
+.skill-row {
+    justify-content: center;
+}
+
+rect {
+    background-image: url("http://www.haziallat.hu/viselkedes/a-kiskutyaja-korai-szocializalodasa/2911/1/kiskutya.jpg");
+    background-position: center;
+        background-size: cover;        height: 50vh;
+        width: 100%;
+}
+
+@media (min-width: 768px) {
+    .col-md-5 {
+        width: 45%;
+    }
+
+
+}
+
+@media (max-width: 765px){
+        .category-grid .row{
+        row-gap: 5px;
+    }
+}

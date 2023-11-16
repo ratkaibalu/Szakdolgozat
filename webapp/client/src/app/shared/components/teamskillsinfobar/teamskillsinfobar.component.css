@@ -1,0 +1,27 @@
+.info-bar {
+    background-color: var(--maincolor);
+    margin: 10px;
+    border-radius: 5px;
+    padding:10px;
+    line-height: 1;
+}
+
+.all-teams {
+    color: white;
+    margin-left: 10px;
+}
+
+.team-number {
+    color: white;
+    margin-left: 20px;
+}
+
+.buttons-div{
+    gap:10px;
+}
+
+@media (max-width: 575.9px) {
+    .edit-teams-button {
+        margin-right: 0px;
+    }
+}

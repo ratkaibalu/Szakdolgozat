@@ -1,0 +1,12 @@
+.info-bar-table{
+    background-color: var(--maincolor);
+    border-radius: 5px;
+    padding:10px;
+    margin: 10px;
+    line-height: 1;
+}
+
+.all-team-members {
+    color: white;
+}
+

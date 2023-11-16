@@ -1,0 +1,93 @@
+<div class="container-fluid my-profile-bar">
+    <div class="col profile-header">
+        <span *ngIf="!isEditing" class="profile-name">{{ member.member_name }}</span>
+        <input *ngIf="isEditing" class="profile-name-input form-control" value="{{member.member_name}}">
+        <a *ngIf="!isEditing" role="button" class="btn btn-light profile-button" (click)="toggleEdit()">Edit profile</a>
+        <a *ngIf="isEditing" role="button" class="btn btn-light profile-button" (click)="saveEdit()">Save</a>
+    </div>
+    <div class="col profile-data">
+        <div class="availability">
+            <span class="title">Teams name</span>
+            <span *ngIf="!isEditing" class="data">{{member.teams_name}}</span>
+            <div *ngIf="isEditing" class="input-group mb-3">
+                <input type="text" class="form-control data" placeholder="Teams name" maxlength="128" aria-label="Teams name" aria-describedby="basic-addon2" value="{{member.teams_name}}">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="button">Button</button>
+                </div>
+            </div>
+            <br>
+            <span class="title">E-mail</span>
+            <span *ngIf="!isEditing" class="data">{{member.email}}</span>
+            <input *ngIf="isEditing" maxlength="128" class="data form-control" value="{{member.email}}" type="email">
+            <br>
+            <span class="title">Roles</span>
+            <ng-container *ngIf="!isEditing">
+                <ng-container *ngIf="member.roles != '';else other_content">
+                    <span class="data">{{member.roles}}</span>
+                </ng-container>
+                <ng-template #other_content>
+                    <span class="data">No roles.</span>
+                </ng-template>
+            </ng-container>
+            <ng-container *ngIf="isEditing">
+                <input class="roleInput form-control" maxlength="256" value="{{member.roles}}">
+            </ng-container>
+        </div>
+
+        <span class="about">About</span>
+        <br>
+        <div class="about-div">
+            <span *ngIf="!isEditing" class="about-text">{{member.about}}</span>
+            <textarea *ngIf="isEditing" value="{{member.about}}" maxlength="2048" class="form-control"></textarea>
+        </div>
+        <div class="container-fluid my-skills-div">
+            <span class="my-skills">My skills</span>
+            <br>
+            <div class="accordion" *ngFor="let category of categoryNames">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            [attr.data-bs-target]="'#collapse' + category.category_id" aria-expanded="false"
+                            [attr.aria-controls]="'collapse' + category.category_id">
+                            {{category.category_name}}
+                        </button>
+                    </h2>
+                    <div id="collapse{{category.category_id}}" class="accordion-collapse collapse">
+                        <div class="accordion-body">
+                            <div class="row accordion-for"
+                                *ngFor="let skill of getCategorySkills(category.category_id)">
+                                <div class="col-sm-2 dots">
+                                    <span class="dot" *ngFor="let dot of [0,1,2,3]; let i = index"
+                                        [ngStyle]="dotColor(skill.skill_id ,i)"
+                                        (click)="changeSkillLevel(skill.skill_id,i)"></span>
+                                </div>
+                                
+                                <i *ngIf="familiarWithSkill(skill.skill_id)" role="button" class="col-sm-2 bi bi-x-square-fill"></i>
+                                <span *ngIf="!familiarWithSkill(skill.skill_id)"class="col-sm-2"></span>
+                                <div class="col-sm-2 skills">
+                                    <span class="skill">{{skill.skill_name}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="container-fluid category-div" *ngFor="let category of categoryNames">
+                <div class="row">
+                    <span class="col-sm-2 category">
+                        {{category.category_name}}
+                    </span>
+                    <a role="button" (click)="toggleIconState(category)" class="btn btn-primary dropdown-link"
+                        data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse-skills-' + category.category_id"
+                        aria-expanded="false" [attr.aria-controls]="'collapse-skills-' + category.category_id">
+                        <i [ngClass]="{'bi bi-caret-down-fill dropdown-icon': !category.isExpanded, 'bi bi-caret-up-fill dropdown-icon': category.isExpanded}"
+                            class="bi bi-caret-down-fill dropdown-icon"></i>
+                    </a>
+                </div>
+                <div class="container-fluid skills-div  collapse" [id]="'collapse-skills-' + category.category_id">
+
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>

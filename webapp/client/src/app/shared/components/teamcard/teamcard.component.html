@@ -1,0 +1,14 @@
+<div class="team-card card">
+    <div class="col team-name-div">
+        <span *ngIf="!isEditing" role="button" (click)="goToTeam(team_id)" class="fs-4 team-name">{{ team_name }}</span>
+        <i *ngIf="isEditing" (click)="deleteTeam(team_id)" role="button" class="position-absolute top-1 end-0 bi bi-x-circle"></i>
+        <input *ngIf="isEditing" type="text" #inputTeamName value="{{ team_name }}" (change)="saveTeamName(team_id, inputTeamName.value)" class="form-control team-name-editing" placeholder="Teamname" aria-label="Teamname" required>
+    </div>
+    <div class="team-members-div">
+        <ng-container *ngFor="let member of members">
+            <div class="member-name-div">
+                <span class="member-name">{{ member.member_name }}</span>
+            </div>
+        </ng-container>
+    </div>
+</div>

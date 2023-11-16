@@ -1,0 +1,24 @@
+<div class="card">
+    <i *ngIf="isEditing" (click)="deleteMemberFromTeam(team_id, member_id)" role="button" class="position-absolute top-1 end-0 bi bi-x-circle"></i>
+    <div class="col member-name-div">
+        <span class="fs-4 member-name">{{ member_name }}</span>
+    </div>
+    <div class="col tags text-center" >
+        <ng-container *ngIf="skills[0].skillName != null;else ngElse">
+            <ng-container  *ngFor="let skill of skills">
+                <span class="tag" [ngStyle]="{'background-color': skill.skillLevel === 1 ? '#FC553B' : (skill.skillLevel === 2 ? '#FFC000' : (skill.skillLevel === 3 ? '#91D050' : '#47A45F'))}">
+                    {{ skill.skillName }}
+                </span>
+            </ng-container>
+        </ng-container>
+        <ng-template #ngElse>
+            <span class="tag noSkills">No skills</span>
+        </ng-template>
+    </div>
+    <hr>
+    <div (click)="goToMemberProfile(member_id)" role="button" class="col mb-2 mt-2 view-profile-div">
+        <span class="view-profile">
+            View profile
+        </span>
+    </div>
+</div>

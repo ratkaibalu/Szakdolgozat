@@ -1,0 +1,86 @@
+.skill-page-header {
+    background-color:var(--maincolor);
+    border-radius: 7px;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    flex-wrap:wrap;
+    margin-top: 20px;
+}
+
+.skill-name {
+    font-size: 2.5rem;  
+    margin-left: 5px;
+    line-height: 2.2rem;
+    vertical-align: middle;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+.skill-edit-button{
+    width: 8rem;
+    font-size: 1rem;
+    border-radius: 10px;
+}
+
+.links-div span {
+    display: block;
+}
+.btn-danger {
+    background-color: #FB5638;
+}
+.btn-success {
+    background-color: var(--maincolor);
+}
+
+.add-new-skill-button {
+    border: 2px solid var(--maincolor);
+}
+
+.linkInput{
+    width: 70%;
+    border-radius: 15px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+}
+.linkInput-div {
+    margin: 10px;
+}
+
+.container-fluid {
+    --bs-gutter-x: 0rem;
+}
+
+.ask-them-names-div span {
+    display: block;
+}
+
+@media only screen and (max-width: 575.9px) {
+    .skill-page-name{
+        font-size: 1.75rem;
+    }
+
+    .skill-edit-button{
+        width: 6rem;
+        font-size: 1rem;
+        border-radius: 10px;
+    }
+
+
+}
+
+@media only screen and ( max-width: 403px ) {
+    .skill-page-header {
+        justify-content: center;
+    }
+
+    .skill-edit-button {
+        margin-top: 1rem;
+    }
+}

@@ -1,0 +1,9 @@
+<app-teaminfobar [isEditing]="isEditing" (toggleEditing)="toggleEditing($event)" [teams]="teams"></app-teaminfobar>
+<div class="container pt-4">
+    <div class="row teamview-row">
+        <app-teamcard [isEditing]="isEditing" class="col-12 col-lg-3 col-md-4 col-sm-6 " *ngFor="let team of teams" [team_name]="team.team_name" (fetchTeams)="fetchTeams()" [team_id]="team.team_id"></app-teamcard>
+        <div *ngIf="isEditing" class="col col-12 col-lg-3 col-md-4 col-sm-6">
+            <a role="button" class="col-12 col-lg-3 col-md-4 col-sm-6 btn btn-success" (click)="addTeam()">Add new team</a>
+        </div>
+    </div>
+</div>

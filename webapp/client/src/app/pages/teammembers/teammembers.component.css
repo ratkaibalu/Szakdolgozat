@@ -1,0 +1,35 @@
+.membercards-row {
+    row-gap: calc(var(--bs-gutter-x));
+}
+.select option {
+    background-color: var(--maincolor); 
+}
+
+.select option:hover{
+    background-color: white;
+    color: black;
+}
+.select{
+    appearance: none;
+    width: 200px;
+}
+.form-select{
+    width: 100%;
+    height: 50px;
+    padding-top: 5%;
+    background-color: var(--maincolor);
+    color: white;
+    text-align: center;
+}
+
+@media only screen and (max-width: 575.9px) {
+    .form-select{
+        padding-top: 2%;
+    }
+    
+    .container{
+        display:block;
+        justify-content:center;
+        padding: 5px;
+    }
+}

@@ -1,0 +1,16 @@
+<div class="info-bar">
+    <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center">
+        <div>
+            <span class="fs-3 all-teams" *ngIf="team_name">{{team_name}}</span>
+            <span class="fs-3 team-number">{{membersLength}} members</span>
+        </div>
+
+        <div class="d-flex align-items-center mt-3 mt-sm-0 buttons-div ms-100">
+            <a (click)="goToTeamTableView(team_id)" role="button" class="btn btn-light table-view-button">Change to table view</a>
+            <button *ngIf="!isEditing;else editing" (click)="changeStatus()" class="btn btn-light edit-teams-button">Edit team</button>
+            <ng-template #editing>
+                <a role="button" (click)="changeStatus()" class="btn btn-light edit-teams-button">Leave editing mode</a>
+            </ng-template>
+        </div>
+    </div>
+</div>

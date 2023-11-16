@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="page-name green-box w-70 mt-4">
+        <span class="fs-2 mt-2 mb-2">Learning page</span>
+    </div>
+    <div class="row">
+        <div class="col-4 accordion accordion-flush" *ngFor="let category of categories" >
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-heading-1">
+                <div class="album py-2">
+                    <div class="container align-items-center justify-content-center">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card shadow-sm">
+                                    <a (click)="goToCategoryPage(category.categoryId,category.categoryName,category.categoryDescription, category.skills)">
+                                        <img width="100%" height="225" type="button" class="bd-placeholder-img card-img-top" src="{{category.categoryImage}}"/>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </h2>
+                <div class="accordion-collapse">
+                    <a [attr.data-bs-target]="'#category-' + category.categoryId" aria-expanded="false"
+                    [attr.aria-controls]="'category-' + category.categoryId" data-bs-toggle="collapse" role="button" class="btn dropdown-link"><i class="bi bi-caret-down-fill dropdown-icon"></i></a>
+                    <div [id]="'category-' + category.categoryId" class="accordion-body collapse">
+                        <div class="category-grid">
+                            <div class="row skill-row" *ngFor="let skill of category.skills">
+                                <span (click)="goToSkillPage(skill.skillId,skill.skillName)" type="button" class="col-xs-12 col-md-5 skill text-center">{{skill.skillName}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

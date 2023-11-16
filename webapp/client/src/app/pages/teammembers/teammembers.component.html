@@ -1,0 +1,14 @@
+<app-teamskillsinfobar [isEditing]="isEditing" (toggleEditing)="toggleEditing($event)" [team_name]="teamName" [team_id]="teamId" [membersLength]="members.length"></app-teamskillsinfobar>
+<div class="container">
+  <div class="row membercards-row">
+    <app-membercard [isEditing]="isEditing" class="col-12 col-lg-3 col-md-4 col-sm-6" *ngFor="let member of members" [team_id]="teamId" [skills]="member.skills" (fetchMembers)="fetchMembers()" (fetchDropdownMembers)="fetchDropdownMembers()" [member_name]="member.memberName" [member_id]="member.memberId"></app-membercard>
+    <div *ngIf="isEditing" class="col-12 col-lg-3 col-md-4 col-sm-6">
+      <select class="col col-12 col-lg-3 col-md-4 col-sm-6 form-select" #selectForm (change)="addMemberToTeam($event)">
+        <option selected>Choose a member!</option>
+        <ng-container>
+          <option *ngFor="let member of dropdownMembers" [value]="member.member_id">{{member.member_name}}</option>
+        </ng-container>
+      </select>
+    </div>
+  </div>
+</div>
