@@ -307,7 +307,6 @@ app.post('/member/skill', (req, res) => {
   const member_id = parseInt(req.body.memberId);
   const skill_id = parseInt(req.body.skillId);
   const skill_level = parseInt(req.body.skillLevel);
-  console.log(member_id,skill_id);
   db.query(`INSERT INTO Memberskills (member_id, skill_id, skill_level) values (${member_id},${skill_id},${skill_level});`, (err, results) => {
     if (err) {
       res.status(500).json({ error: 'Hiba a lekérdezés során' });
@@ -402,8 +401,20 @@ app.delete('/teammembers', (req, res) => {
 app.delete('/teams/member', (req, res) => {
   const teamId = parseInt(req.body.teamId);
   const memberId = parseInt(req.body.memberId);
-
   db.query(`DELETE FROM teammembers where team_id = ${teamId} AND member_id = ${memberId};`, (err, results) => {
+    if (err) {
+      res.status(500).json({ error: 'Hiba a lekérdezés során' });
+    } else {
+      res.status(200).json(results);
+    }
+  });
+});
+
+app.delete('/member/skill', (req, res) => {
+  const skillId = parseInt(req.body.skillId);
+  const memberId = parseInt(req.body.memberId);
+  console.log("Minden király");
+  db.query(`DELETE FROM MemberSkills where skill_id = ${skillId} AND member_id = ${memberId};`, (err, results) => {
     if (err) {
       res.status(500).json({ error: 'Hiba a lekérdezés során' });
     } else {

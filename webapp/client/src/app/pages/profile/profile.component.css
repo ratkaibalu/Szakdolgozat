@@ -23,6 +23,12 @@ input{
 .row {
     width: 90%;
 }
+.disabled{
+    color:grey;
+}
+.visible {
+    color:red;
+}
 .profile-name {
     font-size: 2.5rem;
     margin-left: 5px;
@@ -38,7 +44,17 @@ input{
     vertical-align: middle;
 }
 
+.name-btn {
+    color:white;
+    border-color: white;
+}
 
+.name-btn:hover {
+    background-color: white;
+    color:var(--maincolor);
+    border-color: var(--maincolor);
+    border-width: 2px;
+}
 .profile-data {
     margin: 1.25rem;
     margin-left: 4rem;
@@ -57,17 +73,17 @@ input{
 }
 
 .title {
+    display: block;
     font-size: 24px;
 }
-
-
 
 .roleInput {
     width: 60%;
 }
 
 .about {
-    font-size: 30px;
+    display: block;
+    font-size: 24px;
 }
 
 .about-text {
@@ -144,10 +160,10 @@ input{
     line-height: 25px;
     margin-top: 5px;
 }
-
-.bi-x-square-fill {
-    color:red;
+.input-group {
+    width: 60%;
 }
+
 .skills{
     float: left;
     line-height: 25px;

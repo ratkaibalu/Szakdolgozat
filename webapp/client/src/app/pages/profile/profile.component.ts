@@ -16,6 +16,8 @@ export class ProfileComponent implements OnInit{
   public allSkills: any[] = [];
   public isEditing: boolean = false;
   public memberName: string = "";
+  public rolesReadonly: boolean = true;
+  public saveIcon: boolean = false;
 
   constructor(private route: ActivatedRoute, private router: Router, private dataService: DataService) {
     this.route.params.subscribe(params => {
@@ -87,8 +89,6 @@ export class ProfileComponent implements OnInit{
   }
 
   changeSkillLevel(skillId: number, dotIndex: number){
-    console.log(this.memberSkills);
-    console.log(this.memberSkills.some(skill => skill.skill_id === skillId));
     if(this.memberSkills.some(skill => skill.skill_id === skillId)){
       this.dataService.putMemberSkillLevel(this.memberId,skillId,dotIndex+1).subscribe(() => {
         this.fetchSpecificMemberSkills();
@@ -98,6 +98,20 @@ export class ProfileComponent implements OnInit{
         this.fetchSpecificMemberSkills();
       });
     }
-    
+  }
+
+  deleteMemberSkill(skillId: number){
+    this.dataService.deleteMemberSkill(skillId, this.memberId).subscribe( () => {
+      this.fetchSpecificMemberSkills();
+    });
+  }
+
+  toggleReadonly(){
+    this.rolesReadonly = !this.rolesReadonly;
+    console.log("valami");
+  }
+
+  showSaveIcon(){
+    this.saveIcon = true;
   }
 }
