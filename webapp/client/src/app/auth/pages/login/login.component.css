@@ -1,0 +1,86 @@
+.background {
+    background-color: var(--maincolor);
+    height: 100vh;
+}
+
+.evoSkills{
+    color: white;
+    display: block;
+    text-align: center;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.white-box{
+    background-color: white;
+    width: 40%;
+    height: 80%;
+    border-radius: 10px;
+}
+
+.invalid-input-div {
+    height: 1rem;
+}
+.invalid-input{
+    color: red;
+    text-align: center;
+    display: flex;
+    font-style: italic;
+    font-size: 12px;
+    justify-content: center;
+}
+
+.evo-logo {
+    width: 40%;
+    height: 40%;
+    padding-top: 5%;
+    padding-bottom: 0.5rem;
+}
+
+.login-inputs {
+    width: 50%;
+}
+
+input {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+.login-title {
+    display: flex;
+    justify-content: center;
+    padding-top: 30%;
+}
+
+.login-button {
+    margin-top: 1.5rem;
+    width: 100%;
+}
+
+.form-control:focus {
+    border-color: var(--maincolor);
+    box-shadow: 0 0 0 0.25rem rgba(4, 92, 24, 0.25);
+}
+
+.btn-outline-success {
+    background-color: var(--maincolor);
+    color: white;
+}
+
+@media only screen and (max-width: 650px) {
+    .white-box{
+        width: 60%;
+    }
+    .login-inputs {
+        width: 70%;
+    }
+    .evo-logo {
+        width: 60%;
+        height: 60%;
+    }
+    .login-title {
+        padding-top: 5%;
+    }
+    .login-button {
+        margin-top: 0.5rem;
+    }
+}

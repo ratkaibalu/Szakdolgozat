@@ -1,0 +1,18 @@
+###
+
+POST http://localhost:5000/api/auth/login HTTP/1.1
+content-type: application/json
+
+{
+  "data": {
+    "email": "123@email.com",
+    "password": "test123"
+  }
+}
+
+###
+
+GET http://localhost:5000/api/teams HTTP/1.1
+content-type: application/json
+
+{}

@@ -11,6 +11,18 @@
     background-color: #E9E9E9;
 }
 
+.search-bar-div{
+    justify-content: center;
+}
+
+.search-bar{
+    width: 40%;
+    flex: none;
+}
+
+.searched-skill {
+    border: blue 2px solid;
+}
 .team-name-header, .team-member-name-header{
     background-color: #C9C9C9;
 }

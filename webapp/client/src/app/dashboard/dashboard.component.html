@@ -1,0 +1,6 @@
+<app-header></app-header>
+<main>
+  <section class="router-wrapper" [@fadeRouterTransition]="getRouterOutletState(o)">
+    <router-outlet #o="outlet"></router-outlet>
+  </section>
+</main>

@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter  } from '@angular/core';
 import { Router } from '@angular/router';
-import { DataService } from 'src/app/services/data.service';
+import { DataService } from 'src/app/dashboard/services/data.service';
 
 @Component({
   selector: 'app-membercard',
@@ -19,7 +19,7 @@ export class MembercardComponent {
   constructor( private dataService: DataService ,private router: Router) { }
 
   goToMemberProfile(member_id: number){
-    this.router.navigate(['/profile', member_id], { state: {
+    this.router.navigate(['/dashboard/profile', member_id], { state: {
       'member_name': this.member_name,
       'skills': this.skills
     }});

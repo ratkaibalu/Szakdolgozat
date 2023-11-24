@@ -1,0 +1,29 @@
+<div class="background">
+    <span class="fs-2 evoSkills">EvoSkills</span>
+    <div class="container white-box">
+
+         <div class="row img-div">
+            <img src="assets\evologo.jpg"
+                alt="evologo" class="mx-auto d-block evo-logo ">
+        </div>
+        <div class="row login-inputs mx-auto d-block ">
+            <span class="fs-3 login-title">Login</span>
+            <form (ngSubmit)="login($event)">
+                <div class="form-floating">
+                    <input type="email" class="form-control input-email" name="email" [(ngModel)]="email" required
+                        placeholder="e-mail">
+                    <label>Email address</label>
+                </div>
+                <div class="form-floating">
+                    <input type="password" class="form-control input-password" name="password" [(ngModel)]="password"
+                        required placeholder="password">
+                    <label>Password</label>
+                </div>
+                <div class="invalid-input-div">
+                    <span *ngIf="errorMsg" class="invalid-input">{{errorMsg}}</span>
+                </div>
+                <button type="submit" class="login-button btn btn-outline-success">Login</button>
+            </form>
+        </div>
+    </div>
+</div>

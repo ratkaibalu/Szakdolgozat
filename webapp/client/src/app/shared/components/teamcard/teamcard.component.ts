@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { DataService } from 'src/app/services/data.service';
+import { DataService } from 'src/app/dashboard/services/data.service';
 
 @Component({
   selector: 'app-teamcard',
@@ -24,7 +24,7 @@ export class TeamCardComponent{
   }
   
   goToTeam(team_id: number) {
-    this.router.navigate(['/teammembers', team_id]);
+    this.router.navigate(['/dashboard/teammembers', team_id]);
   }
 
   deleteTeam(teamId: number){

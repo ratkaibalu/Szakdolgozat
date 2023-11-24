@@ -1,10 +1,14 @@
-<div class="table-div fs-6">
+<div class="input-group search-bar-div mb-3">
+    <input type="text" class="form-control search-bar" [(ngModel)]="inputSkillName" (keydown.enter)="searchSkillName()" placeholder="Search skill..." id="search-bar" aria-label="Search skill" aria-describedby="button-addon2">
+    <button class="btn btn-outline-secondary" (click)="searchSkillName()" type="button" id="button-addon2"><i class="bi bi-search"></i></button>
+</div>
+<div class="table-div fs-6" id="table-div">
     <table class="table skills-table">
         <thead>
             <tr>
                 <th class="team-member-name-header">Team Member</th>
                 <th class="team-member-name-header" *ngIf="teamId === null"> Team Name</th>
-                <th class="skill-name-header" *ngFor="let skill of allSkills">{{skill.skillName}}</th>
+                <th [ngClass]="{'searched-skill' : searchedSkill === skill.skillName.toLowerCase()}" class="skill-name-header" id="skill-name-{{skill.skillName.toLowerCase()}}" *ngFor="let skill of allSkills">{{skill.skillName}}</th>
             </tr>
         </thead>
         <tbody>
@@ -13,7 +17,6 @@
                 <td class="team-member-name" *ngIf="teamId === null"> {{ member.teamName }}</td>
                 <td *ngFor="let skillCell of member.skillCells" [ngClass]="skillCell.cssClass">
                     {{ skillCell.content }}
-
                 </td>
             </tr>
         </tbody>
