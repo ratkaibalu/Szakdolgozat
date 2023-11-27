@@ -17,7 +17,7 @@ export class TeammembersskillComponent {
     this.route.params.pipe(take(1)).subscribe(params => {
       this.team_id = params['teamid'];
       this.team_name = this.router.getCurrentNavigation()?.extras.state?.['team_name'];
-    })
+    });
   }
 
   goToTeamMemberView(team_id: number) {

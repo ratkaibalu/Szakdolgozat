@@ -1,6 +1,6 @@
 .member-name-div {
     background-color: var(--maincolor);
-    border-radius: 5px;
+    border-radius: 7px 7px 0px 0px;;
     height: 50px;
     margin-bottom: 10px;
     text-align: center;

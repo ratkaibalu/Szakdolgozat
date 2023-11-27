@@ -8,6 +8,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthInterceptor } from './auth/interceptors/auth.interceptor';
+import { RouteReuseStrategy } from '@angular/router';
+import { CustomRouterReuseStrategy } from './shared/services/custom-router-reuse-strategy.service';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,9 @@ import { AuthInterceptor } from './auth/interceptors/auth.interceptor';
       useClass: AuthInterceptor,
       multi: true,
     },
+    {
+      provide: RouteReuseStrategy, useClass: CustomRouterReuseStrategy
+    }
   ],
   bootstrap: [AppComponent]
 })

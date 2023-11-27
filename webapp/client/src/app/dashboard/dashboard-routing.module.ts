@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, RouteReuseStrategy } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { TeamviewComponent } from './pages/teamview/teamview.component';
 import { TeamtableviewComponent } from './pages/teamtableview/teamtableview.component';

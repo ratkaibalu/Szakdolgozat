@@ -3,6 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/dashboard/services/data.service';
 import { SkillMemberModel } from '../../models/data.model';
+import { AuthService } from 'src/app/auth/services/auth.service';
+import { User } from 'src/app/auth/models/user.model';
+import { first } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -21,18 +24,18 @@ export class ProfileComponent implements OnInit{
   public memberName: string = "";
   public rolesReadonly: boolean = true;
   public saveIcon: boolean = false;
+  public isAdmin: boolean = this.authService.isAdmin();
+  public user: User | null = this.authService.getUser();
 
-  constructor(private route: ActivatedRoute, private router: Router, private dataService: DataService, private cd: ChangeDetectorRef) {
-    this.route.params.subscribe(params => {
+  constructor(private route: ActivatedRoute, private router: Router, private dataService: DataService, private cd: ChangeDetectorRef, private authService: AuthService) {
+    this.route.params.pipe(first()).subscribe(params => {
       this.memberId = params['memberId'];
-    })
+    });
   }
 
   ngOnInit(): void {
     this.fetchSpecificMemberSkills();
-    this.dataService.getSpecificMember(this.memberId).subscribe((data: any) => {
-      this.member = data;
-    });
+    this.fetchMemberData();
 
     this.dataService.getAllCategoryNames().subscribe((data: any) => {
       this.categoryNames = data.map((d: any[]) => ({...d, isExpanded: false}));
@@ -40,6 +43,22 @@ export class ProfileComponent implements OnInit{
 
     this.dataService.getCategoriesWithSkills().subscribe((data: any) => {
       this.allSkills = data;
+    });
+  }
+
+  canEdit(): boolean{
+    if(this.isAdmin){
+      return true;
+    }else if(this.user?.id == this.memberId){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  fetchMemberData(){
+    this.dataService.getSpecificMember(this.memberId).subscribe((data: any) => {
+      this.member = data;
     });
   }
 
@@ -62,7 +81,7 @@ export class ProfileComponent implements OnInit{
   }
 
   saveEdit(){
-    // SAVE
+    this.fetchMemberData();
     this.isEditing = !this.isEditing;
   }
 
@@ -112,7 +131,6 @@ export class ProfileComponent implements OnInit{
 
   toggleReadonly(){
     this.rolesReadonly = !this.rolesReadonly;
-    console.log("valami");
   }
 
   showSaveIcon(){
@@ -121,5 +139,35 @@ export class ProfileComponent implements OnInit{
 
   trackByFn(idx: number, skill: any) {
     return skill.skill_id;
+  }
+
+  saveMemberName(event: Event){
+    const newName = (event.target as HTMLInputElement).value;
+    this.dataService.putMemberName(this.memberId, newName).subscribe((data: any) => {
+    });
+  }
+
+  saveMemberTeamsName(event: Event){
+    const newTeamsName = (event.target as HTMLInputElement).value;
+    this.dataService.putMemberTeamsName(this.memberId, newTeamsName).subscribe((data: any) => {
+    });
+  }
+
+  saveMemberEmail(event: Event){
+    const newEmail = (event.target as HTMLInputElement).value;
+    this.dataService.putMemberEmail(this.memberId, newEmail).subscribe((data: any) => {
+    });
+  }
+
+  saveMemberRoles(event: Event){
+    const newRoles = (event.target as HTMLInputElement).value;
+    this.dataService.putMemberRoles(this.memberId, newRoles).subscribe((data: any) => {
+    });
+  }
+
+  saveMemberAbout(event: Event){
+    const newAbout = (event.target as HTMLInputElement).value;
+    this.dataService.putMemberAbout(this.memberId, newAbout).subscribe((data: any) => {
+    });
   }
 }

@@ -1,130 +1,151 @@
 <div class="container-fluid">
-    <div class="skill-page-header">
-        <span class="skill-name">{{skillName}}</span>
-        <a *ngIf="!isEditing" role="button" class="btn btn-light skill-edit-button" (click)="toggleEdit()">Edit page</a>
-        <a *ngIf="isEditing" role="button" class="btn btn-light skill-edit-button" (click)="saveEdit()">Save</a>
-    </div>
-    <div class="content-div m-4">
-        <form>
-            <div class="row m-2 mb-3">
-                <div><span class="fs-2">Wiki:</span></div>
-                <div class="links-div ms-4">
-                    <ng-container *ngIf="!isEditing">
-                        <ng-container *ngIf="wikiLinks.length !== 0; else noWikiLinks">
-                            <ng-container *ngFor="let wiki_link of wikiLinks">
-                                <a href="{{wiki_link.skill_link}}" class="fs-6">{{wiki_link.skill_linkname}}</a>
-                                <br>
-                            </ng-container>
-                        </ng-container>
-                        <ng-template #noWikiLinks>
-                            <span class="fs-6">No wiki links.</span>
-                        </ng-template>
-                    </ng-container>
-                    <ng-container *ngIf="isEditing">
-                        <ng-container *ngFor="let wiki_link of wikiLinks">
-                            <div class="form-floating mb-1">
-                                <input class="form-control" id="'wikiLinkNameInput' + {{wiki_link.skill_links_id}}"
-                                    value="{{wiki_link.skill_linkname}}">
-                                <label for="'wikiLinkNameInput' + {{wiki_link.skill_links_id}}">Link name</label>
-                            </div>
-                            <div class="form-floating mb-2">
-                                <input class="form-control" id="'wikiLinkURLInput'  + {{wiki_link.skill_links_id}}"
-                                    value="{{wiki_link.skill_link}}">
-                                <label for="'wikiLinkURLInput'  + {{wiki_link.skill_links_id}}">Link URL</label>
-                                <button (click)="deleteLink(wiki_link.skill_links_id)" type="button"
-                                    class="btn btn-danger mt-1">Delete</button>
-                            </div>
-                        </ng-container>
-                        <div class="add-new-wiki-skill-button">
-                            <button type="button" class="btn btn-success" (click)="addNewLink(1)">Add new wiki link</button>
-                        </div>
-                    </ng-container>
-                </div>
-            </div>
-            <div class="row m-2 mb-3">
-                <div><span class="fs-2">Videos:</span></div>
-                <div class="links-div ms-4">
-                    <ng-container *ngIf="!isEditing">
-                        <ng-container *ngIf="videoLinks.length !== 0; else noVideoLinks">
-                            <ng-container *ngFor="let video_link of videoLinks">
-                                <a href="{{video_link.skill_link}}" class="fs-6">{{video_link.skill_linkname}}</a>
-                                <br>
-                            </ng-container>
-                        </ng-container>
-                        <ng-template #noVideoLinks>
-                            <span class="fs-6">No video links.</span>
-                        </ng-template>
-                    </ng-container>
-                    <ng-container *ngIf="isEditing">
-                        <ng-container *ngFor="let video_link of videoLinks">
-                            <div class="form-floating mb-1">
-                                <input class="form-control" id="'videoLinkNameInput' + {{video_link.skill_links_id}}"
-                                    value="{{video_link.skill_linkname}}">
-                                <label for="'videoLinkNameInput' + {{video_link.skill_links_id}}">Link name</label>
-                            </div>
-                            <div class="form-floating mb-2">
-                                <input class="form-control" id="'videoLinkURLInput'  + {{video_link.skill_links_id}}"
-                                    value="{{video_link.skill_link}}">
-                                <label for="'videoLinkURLInput'  + {{video_link.skill_links_id}}">Link URL</label>
-                                <button (click)="deleteLink(video_link.skill_links_id)" type="button"
-                                    class="btn btn-danger mt-1">Delete</button>
-                            </div>
-                        </ng-container>
-                        <div class="add-new-video-skill-button">
-                            <button type="button" class="btn btn-success" (click)="addNewLink(2)">Add new video link</button>
-                        </div>
-                    </ng-container>
-                </div>
-            </div>
-            <div class="row m-2 mb-3">
-                <div><span class="fs-2">Other:</span></div>
-                <div class="links-div ms-4">
-                    <ng-container *ngIf="!isEditing">
-                        <ng-container *ngIf="otherLinks.length !== 0; else noOtherLinks">
-                            <ng-container *ngFor="let other_link of otherLinks">
-                                <a href="{{other_link.skill_link}}" class="fs-6">{{other_link.skill_linkname}}</a>
-                                <br>
-                            </ng-container>
-                        </ng-container>
-                        <ng-template #noOtherLinks>
-                            <span class="fs-6">No other links.</span>
-                        </ng-template>
-                    </ng-container>
-                    <ng-container *ngIf="isEditing">
-                        <ng-container *ngFor="let other_link of otherLinks">
-                            <div class="form-floating mb-1">
-                                <input class="form-control" id="'otherLinkNameInput' + {{other_link.skill_links_id}}"
-                                    value="{{other_link.skill_linkname}}">
-                                <label for="'otherLinkNameInput' + {{other_link.skill_links_id}}">Link name</label>
-                            </div>
-                            <div class="form-floating mb-2">
-                                <input class="form-control" id="'otherLinkURLInput'  + {{other_link.skill_links_id}}"
-                                    value="{{other_link.skill_link}}">
-                                <label for="'otherLinkURLInput'  + {{other_link.skill_links_id}}">Link URL</label>
-                                <button (click)="deleteLink(other_link.skill_links_id)" type="button"
-                                    class="btn btn-danger mt-1">Delete</button>
-                            </div>
-                        </ng-container>
-                        <div class="add-new-wiki-skill-button">
-                            <button type="button" class="btn btn-success" (click)="addNewLink(3)">Add new other link</button>
-                        </div>
-                    </ng-container>
-                </div>
-            </div>
-            <div class="row m-2 mb-3">
-                <div><span class="fs-2">Ask them!</span></div>
-                <ng-container *ngIf="members.length !== 0;else noMembers">
-                <div class="fs-6 ms-4 ask-them-names-div" *ngFor="let member of members">
-                    <a (click)="goToMemberProfile(member.member_id)" class="fs-6">{{member.member_name}}</a>
-                    <br>
-                </div>
+    <div class="skill-data">
+        <div class="card">
+            <div class="card-header skill-page-header">
+                <span class="skill-name">{{skillName}}</span>
+                <ng-container *ngIf="isAdmin">
+                    <a *ngIf="!isEditing" role="button" class="btn btn-light skill-edit-button"
+                        (click)="toggleEdit()">Edit
+                        page</a>
                 </ng-container>
-                <ng-template #noMembers>
-                    <div>
-                        <span class="fs-6 ms-4 ask-them-names-div">There is nobody who knows this skill well.</span>
-                    </div>
-                </ng-template>
+
+                <a *ngIf="isEditing" role="button" class="btn btn-light skill-edit-button" (click)="saveEdit()">Leave editing mode</a>
             </div>
-        </form>
+            <div class="content-div m-4">
+                <div class="row m-2 mb-3">
+                    <div><span class="fs-2">Wiki:</span></div>
+                    <div class="links-div ms-4">
+                        <ng-container *ngIf="!isEditing">
+                            <ng-container *ngIf="wikiLinks.length !== 0; else noWikiLinks">
+                                <ng-container *ngFor="let wiki_link of wikiLinks">
+                                    <a href="{{wiki_link.skill_link}}" class="fs-6">{{wiki_link.skill_linkname}}</a>
+                                    <br>
+                                </ng-container>
+                            </ng-container>
+                            <ng-template #noWikiLinks>
+                                <span class="fs-6">No wiki links.</span>
+                            </ng-template>
+                        </ng-container>
+                        <ng-container *ngIf="isEditing">
+                            <ng-container *ngFor="let wiki_link of wikiLinks">
+                                <div class="form-floating mb-1">
+                                    <input class="form-control" id="'wikiLinkNameInput' + {{wiki_link.skill_links_id}}"
+                                        value="{{wiki_link.skill_linkname}}">
+                                    <label for="'wikiLinkNameInput' + {{wiki_link.skill_links_id}}">Link
+                                        name</label>
+                                </div>
+                                <div class="form-floating mb-2">
+                                    <input class="form-control" id="'wikiLinkURLInput'  + {{wiki_link.skill_links_id}}"
+                                        value="{{wiki_link.skill_link}}">
+                                    <label for="'wikiLinkURLInput'  + {{wiki_link.skill_links_id}}">Link URL</label>
+                                    <button (click)="deleteLink(wiki_link.skill_links_id)" type="button"
+                                        class="btn btn-danger mt-1">Delete</button>
+                                </div>
+                            </ng-container>
+                            <div class="add-new-wiki-skill-button">
+                                <button type="button" class="btn btn-success" (click)="addNewLink(1)">Add new wiki
+                                    link</button>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="row m-2 mb-3">
+                    <div><span class="fs-2">Videos:</span></div>
+                    <div class="links-div ms-4">
+                        <ng-container *ngIf="!isEditing">
+                            <ng-container *ngIf="videoLinks.length !== 0; else noVideoLinks">
+                                <ng-container *ngFor="let video_link of videoLinks">
+                                    <a href="{{video_link.skill_link}}" class="fs-6">{{video_link.skill_linkname}}</a>
+                                    <br>
+                                </ng-container>
+                            </ng-container>
+                            <ng-template #noVideoLinks>
+                                <span class="fs-6">No video links.</span>
+                            </ng-template>
+                        </ng-container>
+                        <ng-container *ngIf="isEditing">
+                            <ng-container *ngFor="let video_link of videoLinks">
+                                <div class="form-floating mb-1">
+                                    <input class="form-control"
+                                        id="'videoLinkNameInput' + {{video_link.skill_links_id}}"
+                                        value="{{video_link.skill_linkname}}">
+                                    <label for="'videoLinkNameInput' + {{video_link.skill_links_id}}">Link
+                                        name</label>
+                                </div>
+                                <div class="form-floating mb-2">
+                                    <input class="form-control"
+                                        id="'videoLinkURLInput'  + {{video_link.skill_links_id}}"
+                                        value="{{video_link.skill_link}}">
+                                    <label for="'videoLinkURLInput'  + {{video_link.skill_links_id}}">Link
+                                        URL</label>
+                                    <button (click)="deleteLink(video_link.skill_links_id)" type="button"
+                                        class="btn btn-danger mt-1">Delete</button>
+                                </div>
+                            </ng-container>
+                            <div class="add-new-video-skill-button">
+                                <button type="button" class="btn btn-success" (click)="addNewLink(2)">Add new video
+                                    link</button>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="row m-2 mb-3">
+                    <div><span class="fs-2">Other:</span></div>
+                    <div class="links-div ms-4">
+                        <ng-container *ngIf="!isEditing">
+                            <ng-container *ngIf="otherLinks.length !== 0; else noOtherLinks">
+                                <ng-container *ngFor="let other_link of otherLinks">
+                                    <a href="{{other_link.skill_link}}" class="fs-6">{{other_link.skill_linkname}}</a>
+                                    <br>
+                                </ng-container>
+                            </ng-container>
+                            <ng-template #noOtherLinks>
+                                <span class="fs-6">No other links.</span>
+                            </ng-template>
+                        </ng-container>
+                        <ng-container *ngIf="isEditing">
+                            <ng-container *ngFor="let other_link of otherLinks">
+                                <div class="form-floating mb-1">
+                                    <input class="form-control"
+                                        id="'otherLinkNameInput' + {{other_link.skill_links_id}}"
+                                        value="{{other_link.skill_linkname}}">
+                                    <label for="'otherLinkNameInput' + {{other_link.skill_links_id}}">Link
+                                        name</label>
+                                </div>
+                                <div class="form-floating mb-2">
+                                    <input class="form-control"
+                                        id="'otherLinkURLInput'  + {{other_link.skill_links_id}}"
+                                        value="{{other_link.skill_link}}">
+                                    <label for="'otherLinkURLInput'  + {{other_link.skill_links_id}}">Link
+                                        URL</label>
+                                    <button (click)="deleteLink(other_link.skill_links_id)" type="button"
+                                        class="btn btn-danger mt-1">Delete</button>
+                                </div>
+                            </ng-container>
+                            <div class="add-new-wiki-skill-button">
+                                <button type="button" class="btn btn-success" (click)="addNewLink(3)">Add new other
+                                    link</button>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="row m-2 mb-3">
+                    <div><span class="fs-2">Ask them!</span></div>
+                    <ng-container *ngIf="members.length !== 0;else noMembers">
+                        <div class="fs-6 ms-4 ask-them-names-div" *ngFor="let member of members">
+                            <a (click)="goToMemberProfile(member.member_id)" role="button"
+                                class="fs-6">{{member.member_name}}</a>
+                            <br>
+                        </div>
+                    </ng-container>
+                    <ng-template #noMembers>
+                        <div>
+                            <span class="fs-6 ms-4 ask-them-names-div">There is nobody who knows this skill
+                                well.</span>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

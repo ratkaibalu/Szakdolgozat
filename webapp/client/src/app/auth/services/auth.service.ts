@@ -143,4 +143,8 @@ export class AuthService {
   public getUser(): User | null {
     return this.localStorageService.getItem<User>('user');
   }
+
+  public isAdmin(): boolean {
+    return this.getUser()?.isAdmin ?? false;
+  }
 }

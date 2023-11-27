@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component} from '@angular/core';
 import { routerTransition, fadeRouterTransition } from '../utils/router-transitions';
 import { RouterOutlet } from '@angular/router';
 
@@ -8,11 +8,13 @@ import { RouterOutlet } from '@angular/router';
   styleUrls: ['./dashboard.component.css'],
   animations: [routerTransition, fadeRouterTransition]
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements AfterViewInit {
 
-  constructor() {}
+  constructor(private cd: ChangeDetectorRef) {}
 
-  ngOnInit(): void {}
+  ngAfterViewInit(): void {
+    this.cd.detectChanges();
+  }
 
   getRouterOutletState(outlet: RouterOutlet) {
     return outlet?.activatedRouteData?.['animation'];

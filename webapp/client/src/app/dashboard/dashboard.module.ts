@@ -14,6 +14,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { NotfoundComponent } from './pages/notfound/notfound.component';
 import { DataService } from './services/data.service';
 import { SharedModule } from '../shared/shared.module';
+import { RouteReuseStrategy } from '@angular/router';
+import { CustomRouterReuseStrategy } from '../shared/services/custom-router-reuse-strategy.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,7 @@ import { SharedModule } from '../shared/shared.module';
     SharedModule
   ],
   providers: [
-    DataService
+    DataService,
   ]
 })
 export class DashboardModule { }

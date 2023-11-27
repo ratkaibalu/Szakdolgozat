@@ -29,6 +29,10 @@ export class DataService {
     return this.http.get<SkillModel[]>(`${this.apiUrl}/skills`);
   }
 
+  getSkillName(skillId: number): Observable<SkillModel> {
+    return this.http.get<SkillModel>(`${this.apiUrl}/skills/${skillId}`)
+  }
+
   getAllMembersWithSkills(): Observable<MemberModel[]> {
     return this.http.get<MemberModel[]>(`${this.apiUrl}/members/all`);
   }
@@ -61,6 +65,10 @@ export class DataService {
     return this.http.get<MemberModel[]>(`${this.apiUrl}/category_links/${category_id}`);
   }
 
+  getCategoryNameAndDesc(category_id: number){
+    return this.http.get<MemberModel[]>(`${this.apiUrl}/category/${category_id}/name`);
+  }
+
   getCategoryWithSkills(category_id: number){
 
     return this.http.get<MemberModel[]>(`${this.apiUrl}/category/${category_id}`);
@@ -90,8 +98,6 @@ export class DataService {
 
   postNewSkill(categoryId: number){
     const data = { categoryId };
-    console.log(data);
-    
     return this.http.post(`${this.apiUrl}/category/skills`, data);
   }
 
@@ -124,6 +130,46 @@ export class DataService {
   putMemberSkillLevel(memberId: number, skillId: number, skillLevel: number){
     const data = { memberId, skillId, skillLevel };
     return this.http.put(`${this.apiUrl}/member/skill`, data);
+  }
+
+  putMemberName(memberId: number, memberName: string){
+    const data = { memberId, memberName };
+    return this.http.put(`${this.apiUrl}/member/profile/name`, data);
+  }
+
+  putMemberTeamsName(memberId: number, memberTeamsName: string){
+    const data = { memberId, memberTeamsName };
+    return this.http.put(`${this.apiUrl}/member/profile/teamsname`, data);
+  }
+
+  putMemberEmail(memberId: number, memberEmail: string){
+    const data = { memberId, memberEmail };
+    return this.http.put(`${this.apiUrl}/member/profile/email`, data);
+  }
+
+  putMemberRoles(memberId: number, memberRoles: string){
+    const data = { memberId, memberRoles };
+    return this.http.put(`${this.apiUrl}/member/profile/roles`, data);
+  }
+
+  putMemberAbout(memberId: number, memberAbout: string){
+    const data = { memberId, memberAbout };
+    return this.http.put(`${this.apiUrl}/member/profile/about`, data);
+  }
+
+  putCategoryDescription(categoryId: number, categoryDescription: string){
+    const data = { categoryId, categoryDescription };
+    return this.http.put(`${this.apiUrl}/category/description`, data);
+  }
+
+  putCategoryLinkName(linkId: number, categoryLinkName: string){
+    const data = { linkId, categoryLinkName };
+    return this.http.put(`${this.apiUrl}/category/linkname`, data);
+  }
+
+  putCategoryLink(linkId: number, categoryLink: string){
+    const data = { linkId, categoryLink };
+    return this.http.put(`${this.apiUrl}/category/link`, data);
   }
 
   //DELETE

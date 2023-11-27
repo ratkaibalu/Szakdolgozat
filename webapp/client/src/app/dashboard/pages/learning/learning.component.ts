@@ -20,15 +20,9 @@ export class LearningComponent implements OnInit{
   }
 
   goToSkillPage(skillId: number,skillName: string){
-    this.router.navigate(['/dashboard/learningskill', skillId], {
-      state: {
-        'skill_name': skillName
-      }
-    });
+    this.router.navigate(['/dashboard/learningskill', skillId]);
   }
   goToCategoryPage(categoryId: number, categoryName: string, categoryDescription: string[], skills : any[]){
-    console.log("asd" + skills);
-    
     this.router.navigate(['/dashboard/learningcategory', categoryId], {
       state: {
         'category_name': categoryName,
