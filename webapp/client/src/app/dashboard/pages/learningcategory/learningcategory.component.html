@@ -5,16 +5,16 @@
                 <span class="category-name">{{ categoryName }}</span>
                 <ng-container *ngIf="isAdmin">
                     <a *ngIf="!isEditing" role="button" class="btn btn-light category-edit-button"
-                    (click)="toggleEdit()">Edit
-                    page</a>
+                        (click)="toggleEdit()">Edit
+                        page</a>
                 </ng-container>
-                <a *ngIf="isEditing" role="button" class="btn btn-light category-edit-button"
-                    (click)="saveEdit()">Leave editing mode</a>
+                <a *ngIf="isEditing" role="button" class="btn btn-light category-edit-button" (click)="saveEdit()">Leave
+                    editing mode</a>
             </div>
             <div class="content-div m-4">
                 <div class="row m-2 mb-3">
-                    <div><span class="fs-2">Description</span></div>
-                    <div class="category-description-div ms-4">
+                    <div><span class="fs-2 title">Description</span></div>
+                    <div class="category-description-div ms-2">
                         <div class="about-div">
                             <span *ngIf="!isEditing" class="descrption-text">{{categoryDescription}}</span>
                             <textarea *ngIf="isEditing" value="{{categoryDescription}}"
@@ -24,8 +24,8 @@
                     </div>
                 </div>
                 <div class="row m-2 mb-3">
-                    <div><span class="fs-2">Abilities in this category</span></div>
-                    <div class="container abilities-in-this-category-div ms-4">
+                    <span class="fs-2 title">Abilities in this category</span>
+                    <div class="container abilities-in-this-category-div ms-2">
                         <ng-container *ngIf="!isEditing">
                             <ng-container *ngIf="categorySkills.length !==0;else noCategorySkills">
                                 <ng-container *ngFor="let skill of categorySkills">
@@ -44,24 +44,23 @@
                                     <input readonly="readonly" class="form-control"
                                         id="'skillIdInput' + {{skill.skill_id}}" value="{{skill.skill_name}}">
                                     <label for="'skillIdInput' + {{skill.skill_id}}">Skill name</label>
-                                    <button (click)="deleteSkill(skill.skill_id)" type="button"
+                                    <button (click)="deleteSkillAndMemberSkills(skill.skill_id)" type="button"
                                         class="btn btn-danger mt-1">Delete</button>
                                 </div>
                             </ng-container>
                             <div class="add-new-wiki-skill-button">
-                                <button type="button" class="btn btn-success" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" (click)="addNewSkill()" aria-expanded="false">Add new skill</button>
                                 <div class="dropdown">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                      Dropdown
-                                    </button>
+                                    <button type="button" class="btn btn-success dropdown-toggle" id="dropdownMenuButton" (click)="deletErrorMessage()" data-bs-toggle="dropdown" aria-haspopup="true"  aria-expanded="false">Add new skill</button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                      <form class="px-4 py-3">
-                                        <div class="mb-3">
-                                          <label for="exampleDropdownFormEmail1" class="form-label">Email address</label>
-                                          <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com">
+                                        <div class="px-2 py-2">
+                                            <div class="mb-3">
+                                                <label for="newSkill" class="form-label">Write skill name(max. 32 letter)</label>
+                                                <input type="text" [(ngModel)]="newSkillName" class="form-control" id="newSkill" placeholder="New skill name">
+                                            </div>
+                                            <button (click)="addNewSkill($event)" class="btn save-button">Save</button>
+                                            <span class="error-text" *ngIf="isSkillNameInvalid">Incorrect skill name</span>
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Sign in</button>
-                                      </form>
+
                                     </div>
                                 </div>
                             </div>
@@ -69,8 +68,8 @@
                     </div>
                 </div>
                 <div class="row m-2 mb-3">
-                    <div><span class="fs-2">Other</span></div>
-                    <div class="other-links-div ms-4">
+                    <div><span class="fs-2 title">Other</span></div>
+                    <div class="other-links-div ms-2">
                         <ng-container *ngIf="!isEditing">
                             <ng-container *ngIf="otherLinks.length !== 0; else noOtherLinks">
                                 <ng-container *ngFor="let other_link of otherLinks">

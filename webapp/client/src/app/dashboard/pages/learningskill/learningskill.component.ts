@@ -75,4 +75,16 @@ export class LearningskillComponent implements OnInit{
   goToMemberProfile(member_id: number){
     this.router.navigate(['/dashboard/profile', member_id]);
   }
+
+  saveSkillLinkName(event: Event, linkId: number){
+    const linkName = (event.target as HTMLInputElement).value;
+    this.dataService.putSkillLinkName(linkId,linkName).subscribe((data: any) => {
+    });
+  }
+
+  saveSkillLinkUrl(event: Event, linkId: number){
+    const linkUrl = (event.target as HTMLInputElement).value;
+    this.dataService.putSkillLinkUrl(linkId,linkUrl).subscribe((data: any) => {
+    });
+  }
 }

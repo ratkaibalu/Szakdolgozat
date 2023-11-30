@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { MemberModel, SkillMemberModel, SkillModel } from '../models/data.model';
 
-@Injectable({
-  providedIn: 'root'
-})
-
+@Injectable()
 export class DataService {
   protected readonly apiUrl = '/api';
+  public refreshProfile$ = new Subject<number>();
 
   constructor(private http: HttpClient) { }
 
@@ -96,8 +94,8 @@ export class DataService {
     return this.http.post(`${this.apiUrl}/skill_links`, data);
   }
 
-  postNewSkill(categoryId: number){
-    const data = { categoryId };
+  postNewSkill(categoryId: number, skillName: string){
+    const data = { categoryId, skillName };
     return this.http.post(`${this.apiUrl}/category/skills`, data);
   }
 
@@ -172,15 +170,36 @@ export class DataService {
     return this.http.put(`${this.apiUrl}/category/link`, data);
   }
 
+  putSkillLinkName(linkId: number, linkName: string){
+    const data = { linkId, linkName };
+    return this.http.put(`${this.apiUrl}/skill/link_name`, data);
+  }
+
+  putSkillLinkUrl(linkId: number, linkUrl: string){
+    const data = { linkId, linkUrl };
+    return this.http.put(`${this.apiUrl}/skill/link_url`, data);
+  }
+
   //DELETE
   deleteLink(linkId: number){
     const data = { linkId };
     return this.http.delete(`${this.apiUrl}/skill_links`, {body: data});
   }
 
+  deleteSkillLinks(skillId: number){
+    const data = { skillId };
+    return this.http.delete(`${this.apiUrl}/skill/skill_links`, {body: data});
+  
+  }
+
   deleteSkill(skillId: number){
     const data = { skillId };
     return this.http.delete(`${this.apiUrl}/category/skills`, {body: data});
+  }
+
+  deleteMemberSkills(skillId: number){
+    const data = { skillId };
+    return this.http.delete(`${this.apiUrl}/memberskills/skills`, {body: data});
   }
 
   deleteCategoryLink(categoryLinkId:number){

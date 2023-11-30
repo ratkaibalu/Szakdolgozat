@@ -29,13 +29,13 @@
                         <ng-container *ngIf="isEditing">
                             <ng-container *ngFor="let wiki_link of wikiLinks">
                                 <div class="form-floating mb-1">
-                                    <input class="form-control" id="'wikiLinkNameInput' + {{wiki_link.skill_links_id}}"
+                                    <input class="form-control" (change)="saveSkillLinkName($event, wiki_link.skill_links_id)" id="'wikiLinkNameInput' + {{wiki_link.skill_links_id}}"
                                         value="{{wiki_link.skill_linkname}}">
                                     <label for="'wikiLinkNameInput' + {{wiki_link.skill_links_id}}">Link
                                         name</label>
                                 </div>
                                 <div class="form-floating mb-2">
-                                    <input class="form-control" id="'wikiLinkURLInput'  + {{wiki_link.skill_links_id}}"
+                                    <input class="form-control" (change)="saveSkillLinkUrl($event, wiki_link.skill_links_id)" id="'wikiLinkURLInput'  + {{wiki_link.skill_links_id}}"
                                         value="{{wiki_link.skill_link}}">
                                     <label for="'wikiLinkURLInput'  + {{wiki_link.skill_links_id}}">Link URL</label>
                                     <button (click)="deleteLink(wiki_link.skill_links_id)" type="button"
@@ -66,14 +66,14 @@
                         <ng-container *ngIf="isEditing">
                             <ng-container *ngFor="let video_link of videoLinks">
                                 <div class="form-floating mb-1">
-                                    <input class="form-control"
+                                    <input class="form-control" (change)="saveSkillLinkName($event, video_link.skill_links_id)"
                                         id="'videoLinkNameInput' + {{video_link.skill_links_id}}"
                                         value="{{video_link.skill_linkname}}">
                                     <label for="'videoLinkNameInput' + {{video_link.skill_links_id}}">Link
                                         name</label>
                                 </div>
                                 <div class="form-floating mb-2">
-                                    <input class="form-control"
+                                    <input class="form-control" (change)="saveSkillLinkUrl($event, video_link.skill_links_id)"
                                         id="'videoLinkURLInput'  + {{video_link.skill_links_id}}"
                                         value="{{video_link.skill_link}}">
                                     <label for="'videoLinkURLInput'  + {{video_link.skill_links_id}}">Link
@@ -106,14 +106,14 @@
                         <ng-container *ngIf="isEditing">
                             <ng-container *ngFor="let other_link of otherLinks">
                                 <div class="form-floating mb-1">
-                                    <input class="form-control"
+                                    <input class="form-control" (change)="saveSkillLinkName($event, other_link.skill_links_id)"
                                         id="'otherLinkNameInput' + {{other_link.skill_links_id}}"
                                         value="{{other_link.skill_linkname}}">
                                     <label for="'otherLinkNameInput' + {{other_link.skill_links_id}}">Link
                                         name</label>
                                 </div>
                                 <div class="form-floating mb-2">
-                                    <input class="form-control"
+                                    <input class="form-control" (change)="saveSkillLinkUrl($event, other_link.skill_links_id)"
                                         id="'otherLinkURLInput'  + {{other_link.skill_links_id}}"
                                         value="{{other_link.skill_link}}">
                                     <label for="'otherLinkURLInput'  + {{other_link.skill_links_id}}">Link

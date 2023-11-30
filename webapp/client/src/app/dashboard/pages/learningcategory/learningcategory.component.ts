@@ -18,6 +18,8 @@ export class LearningcategoryComponent implements OnInit{
   public isEditing: boolean = false;
   public otherLinks: any[] = [];
   public isAdmin: boolean = this.authService.isAdmin();
+  public newSkillName: string = "";
+  public isSkillNameInvalid: boolean = false;
 
   constructor(private route: ActivatedRoute, private dataService: DataService, private router: Router, private authService: AuthService){
     this.route.params.subscribe(params => {
@@ -55,13 +57,25 @@ export class LearningcategoryComponent implements OnInit{
     })
   }
 
-  addNewSkill(){
-    this.dataService.postNewSkill(this.categoryId).subscribe(() => {
-      this.fetchCategorySkills();
-    });
+  addNewSkill(event: Event){
+    if(this.newSkillName.replace(/\s/g, '') != "" && this.newSkillName.length <= 32) {
+      this.dataService.postNewSkill(this.categoryId, this.newSkillName).subscribe(() => {
+        this.fetchCategorySkills();
+      });
+    }else{
+      this.isSkillNameInvalid = true;
+      event.stopPropagation();
+    }
+  }
+
+  deletErrorMessage(){
+    this.newSkillName = "";
+    this.isSkillNameInvalid = false;
   }
   
-  deleteSkill(skillId:number){
+  deleteSkillAndMemberSkills(skillId:number){
+    this.dataService.deleteMemberSkills(skillId).subscribe();
+    this.dataService.deleteSkillLinks(skillId).subscribe();
     this.dataService.deleteSkill(skillId).subscribe(() => {
       this.fetchCategorySkills();
     });

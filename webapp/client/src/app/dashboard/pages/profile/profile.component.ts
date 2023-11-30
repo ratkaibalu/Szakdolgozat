@@ -34,6 +34,16 @@ export class ProfileComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    this.dataService.refreshProfile$.subscribe((memberId: number) => {
+      this.memberId = memberId;
+      console.log("refresh");
+      
+    });
+
+    this.refresh();
+  }
+
+  refresh(){
     this.fetchSpecificMemberSkills();
     this.fetchMemberData();
 

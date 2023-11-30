@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { NgForm, Validators } from '@angular/forms';
-import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-login',

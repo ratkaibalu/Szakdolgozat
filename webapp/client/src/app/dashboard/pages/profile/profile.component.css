@@ -188,15 +188,18 @@
     float: left;
     line-height: 25px;
     text-align: left;
-    height: 30px;
+    height: auto;
+
 }
 
 .skill {
-    width: 10rem;
     display: block;
 }
 .row>* {
     width: auto;
+}
+i {
+    margin-right: 5px;
 }
 
 .input-group-append .btn  {
@@ -204,7 +207,7 @@
     border-bottom-left-radius: 0;
 }
 
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 660px) {
     .data {
         width: 100%;
     }
@@ -214,6 +217,7 @@
     }
     .skill {
         text-align: left;
+        width: 10rem;
     }
     .accordion-for{
         justify-content: center;
@@ -245,7 +249,7 @@
     }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 446px) {
     .skill {
         text-align: center;
     }

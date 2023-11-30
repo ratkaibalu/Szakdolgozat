@@ -20,6 +20,10 @@
     gap:10px;
 }
 
+i{
+    margin-right: 5px;
+}
+
 @media (max-width: 575.9px) {
     .edit-teams-button {
         margin-right: 0px;

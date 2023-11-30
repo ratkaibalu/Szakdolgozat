@@ -14,8 +14,9 @@
     word-wrap: break-word; 
 }
 .bi-x-circle {
-    color: red;
-    margin-top: -10px;
+    color: white;
+    margin-top: -13px;
+    margin-right: 1px;
 }
 a {
     text-decoration: none;

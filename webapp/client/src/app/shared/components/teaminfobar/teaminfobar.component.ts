@@ -13,10 +13,7 @@ export class TeamInfobarComponent {
   public isAdmin: boolean = this.authService.isAdmin();
   @Output() toggleEditing = new EventEmitter<boolean>();
 
-  constructor(private router: Router, private authService: AuthService) { 
-    console.log(this.isAdmin);
-    
-  }
+  constructor(private router: Router, private authService: AuthService) {}
 
   changeStatus(){
     this.isEditing = !this.isEditing;

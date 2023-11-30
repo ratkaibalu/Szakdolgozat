@@ -24,9 +24,7 @@ export class TeamskillsinfobarComponent {
   }
 
   goToTeamTableView(team_id: number) {
-    this.router.navigate(['/dashboard/teammembersskill', team_id], { state: {
-      'team_name': this.team_name
-    }});
+    this.router.navigate(['/dashboard/teammembersskill', team_id]);
   }
 
   changeStatus(){

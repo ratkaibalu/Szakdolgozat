@@ -9,14 +9,19 @@ import { DataService } from 'src/app/dashboard/services/data.service';
   templateUrl: './teammembersskill.component.html',
   styleUrls: ['./teammembersskill.component.css']
 })
-export class TeammembersskillComponent {
-  public team_id: number = 0;
-  public team_name: string = "";
+export class TeammembersskillComponent implements OnInit{
+  public teamId: number = 0;
+  public teamName: string = "";
 
   constructor(private route: ActivatedRoute, private router: Router, private dataService: DataService) {
     this.route.params.pipe(take(1)).subscribe(params => {
-      this.team_id = params['teamid'];
-      this.team_name = this.router.getCurrentNavigation()?.extras.state?.['team_name'];
+      this.teamId = params['teamid'];
+    });
+  }
+
+  ngOnInit(): void {
+    this.dataService.getTeamById(this.teamId).subscribe((data: any) => {
+      this.teamName = data;
     });
   }
 

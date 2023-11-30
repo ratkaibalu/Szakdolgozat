@@ -11,7 +11,6 @@ import { MemberCell, MemberModel, SkillModel } from 'src/app/dashboard/models/da
   styleUrls: ['./skill-table.component.css']
 })
 export class SkillTableComponent implements OnInit {
-
   @Input() teamId: number | null = null;
 
   public allSkills: SkillModel[] = [];

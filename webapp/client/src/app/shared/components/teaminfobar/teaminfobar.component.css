@@ -16,27 +16,13 @@
     margin-left: 20px;
 }
 
-.table-view-button {
-
-}
-
-.edit-teams-button{
-    
-}
-
 .buttons-div{
     gap:10px;
-    /*margin-right: 10px;*/
 }
 
-.buttons-div > button {
-    /*
-    padding-top: 4px;
-    padding-bottom: 4px;
-    */
-
+i{
+    margin-right: 5px;
 }
-
 @media (max-width: 575.9px) {
     .edit-teams-button {
         margin-right: 0px;

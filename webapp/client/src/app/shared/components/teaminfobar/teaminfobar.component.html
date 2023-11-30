@@ -6,12 +6,12 @@
         </div>
 
         <div class="d-flex align-items-center mt-3 mt-sm-0 buttons-div ms-100">
-            <a (click)="goToTableView()" role="button" class="btn btn-light table-view-button">Change to table view</a>
+            <a (click)="goToTableView()" role="button" class="btn btn-light table-view-button"><i class="bi bi-table"></i>Change to table view</a>
             <ng-container *ngIf="isAdmin">
-                <a role="button" *ngIf="!isEditing;else editing" (click)="changeStatus()" class="btn btn-light edit-teams-button">Edit teams</a>
+                <a role="button" *ngIf="!isEditing;else editing" (click)="changeStatus()" class="btn btn-light edit-teams-button"><i class="bi bi-pencil-fill"></i>Edit teams</a>
             </ng-container>
             <ng-template #editing>
-                <a role="button" (click)="changeStatus()" class="btn btn-light edit-teams-button">Leave editing mode</a>
+                <a role="button" (click)="changeStatus()" class="btn btn-light edit-teams-button"><i class="bi bi-pencil"></i>Leave editing mode</a>
             </ng-template>
         </div>
     </div>

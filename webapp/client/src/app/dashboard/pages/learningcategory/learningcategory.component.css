@@ -21,13 +21,30 @@
     word-break: break-all;
 }
 
+.error-text{
+    font-style: italic;
+    color: red;
+    font-size: 1rem;
+    margin-left: 5px;
+    word-break: break-word;
+}
 .category-name {
     font-size: 1.5rem;
     margin-left: 5px;
     line-height: 2.2rem;
     vertical-align: middle;
 }
-
+.save-button {
+    background-color: var(--maincolor);
+    border-color: var(--maincolor);
+    color: white;
+}
+.form-label {
+    word-break: break-word;
+}
+.btn {
+    word-break: break-word;
+}
 a{
     text-decoration: none;
     color: black;
@@ -60,6 +77,10 @@ a{
 
 .ask-them-names-div span {
     display: block;
+}
+
+.title {
+    padding-right: 0px;
 }
 
 @media only screen and (max-width: 575.9px) {

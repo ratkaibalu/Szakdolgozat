@@ -185,7 +185,6 @@ WHERE canBeInMultipleTeam = true;`, (err, results) => {
 
 dataRouter.get('/members/:id', (req, res) => {
   const id = parseInt(req.params.id);
-  console.log(id);
   
   db.query<RowDataPacket[]>(`select member_name,email,roles,teams_name,about FROM Members WHERE member_id = ${id}`, (err, results) => {
     if (err) {
@@ -323,7 +322,8 @@ dataRouter.post('/skill_links', (req, res) => {
 
 dataRouter.post('/category/skills', (req, res) => {
   const categoryId = parseInt(req.body.categoryId);
-  db.query<RowDataPacket[]>(`INSERT INTO skills (skill_id, skill_name, category_id) VALUES (null, "", ${categoryId});`, (err, results) => {
+  const skillName = req.body.skillName;
+  db.query<RowDataPacket[]>(`INSERT INTO skills (skill_id, skill_name, category_id) VALUES (null, "${skillName}", ${categoryId});`, (err, results) => {
     if (err) {
       res.status(500).json({ error: 'Hiba a lekérdezés során' });
     } else {
@@ -505,11 +505,45 @@ dataRouter.put('/category/link', (req, res) => {
   });
 });
 
+dataRouter.put('/skill/link_name', (req, res) => {
+  const linkId = parseInt(req.body.linkId);
+  const linkName = req.body.linkName;
+  db.query<RowDataPacket[]>(`UPDATE skill_links SET skill_linkname = "${linkName}" WHERE skill_links_id = ${linkId};`, (err, results) => {
+    if (err) {
+      res.status(500).json({ error: 'Hiba a lekérdezés során' });
+    } else {
+      res.status(200).json({message: 'Success!'});
+    }
+  });
+});
+
+dataRouter.put('/skill/link_url', (req, res) => {
+  const linkId = parseInt(req.body.linkId);
+  const linkUrl = req.body.linkUrl;  
+  db.query<RowDataPacket[]>(`UPDATE skill_links SET skill_link = "${linkUrl}" WHERE skill_links_id = ${linkId};`, (err, results) => {
+    if (err) {
+      res.status(500).json({ error: 'Hiba a lekérdezés során' });
+    } else {
+      res.status(200).json({message: 'Success!'});
+    }
+  });
+});
 
 // DELETE
 dataRouter.delete('/skill_links', (req, res) => {
   const skill_link_id = parseInt(req.body.linkId);
   db.query<RowDataPacket[]>(`DELETE FROM skill_links WHERE skill_links_id = ${skill_link_id}`, (err, results) => {
+    if (err) {
+      res.status(500).json({ error: 'Hiba a lekérdezés során' });
+    } else {
+      res.status(200).json(results);
+    }
+  });
+});
+
+dataRouter.delete('/skill/skill_links', (req, res) => {
+  const skillId = parseInt(req.body.skillId);
+  db.query<RowDataPacket[]>(`DELETE FROM skill_links WHERE skill_id = ${skillId}`, (err, results) => {
     if (err) {
       res.status(500).json({ error: 'Hiba a lekérdezés során' });
     } else {
@@ -528,6 +562,18 @@ dataRouter.delete('/category/skills', (req, res) => {
     }
   });
 });
+
+dataRouter.delete('/memberskills/skills', (req, res) => {
+  const skill_id = parseInt(req.body.skillId);
+  db.query<RowDataPacket[]>(`DELETE FROM memberskills WHERE skill_id = ${skill_id}`, (err, results) => {
+    if (err) {
+      res.status(500).json({ error: 'Hiba a lekérdezés során' });
+    } else {
+      res.status(200).json(results);
+    }
+  });
+});
+
 
 dataRouter.delete('/category_links', (req, res) => {
   const categoryLinkId = parseInt(req.body.categoryLinkId);

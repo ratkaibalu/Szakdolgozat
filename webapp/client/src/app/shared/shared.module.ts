@@ -6,12 +6,10 @@ import { TeamCardComponent } from './components/teamcard/teamcard.component';
 import { MembercardComponent } from './components/membercard/membercard.component';
 import { TeamskillsinfobarComponent } from './components/teamskillsinfobar/teamskillsinfobar.component';
 import { SkillTableComponent } from './components/skill-table/skill-table.component';
-import { HeaderComponent } from './layout/header/header.component';
 import { LocalStorageService } from './services/local-storage.service';
 import { RouterLink } from '@angular/router';
 
 const COMPONENTS = [
-  HeaderComponent,
   TeamInfobarComponent,
   TeamCardComponent,
   MembercardComponent,

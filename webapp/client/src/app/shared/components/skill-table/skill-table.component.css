@@ -13,6 +13,7 @@
 
 .search-bar-div{
     justify-content: center;
+    margin-top: 15px;
 }
 
 .search-bar{
@@ -34,6 +35,9 @@
 
 .explanation-table{
     gap: 20px;
+    margin-right: 15px;
+    margin-left: 15px;
+    margin-bottom: 10px;
 }
 
 .explanation-table span {

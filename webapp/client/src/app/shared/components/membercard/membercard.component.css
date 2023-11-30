@@ -1,18 +1,25 @@
 .member-name-div {
     background-color: var(--maincolor);
-    border-radius: 7px 7px 0px 0px;;
-    height: 50px;
-    margin-bottom: 10px;
     text-align: center;
     padding: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
+.member-card {
+    background-color: #fff;
+    padding-right: 0px;
+    padding-left: 0px;
+    border: 0px none;
+    box-shadow: rgba(65, 69, 88, 0.1) 0px 7px 14px 0px, rgba(0, 0, 0, 0.07) 0px 3px 6px 0px;
+}
 .member-name {
     color: white;
 }
 .tags{
     height: 100px;
     white-space:nowrap;
+    margin-top: 5px;
 }
 
 .tag {
@@ -50,11 +57,11 @@ hr {
     margin-right: 10px;
     margin-left: 10px;
     margin-top: 5px;
-    margin-bottom: 5px;
+    margin-bottom: 0px;
 }
 
 .bi-x-circle {
-    color: red;
+    color: white;
     margin-top: -3px;
     margin-right: 1px;
 }

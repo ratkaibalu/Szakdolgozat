@@ -45,38 +45,6 @@ export class AuthService {
     });
   }
 
-  /*
-  register(regData: any): Promise<SubmitResult> {
-    return new Promise<SubmitResult>((resolve, reject) => {
-      this.http
-        .post<any>(
-          `${this.apiUrl}/register`, 
-          this.dataToApiSchema(regData),
-          {
-            observe: 'response',
-            headers: this.headers
-          }
-        )
-        .pipe(
-          catchError(this.handleResponseError)
-        )
-        .subscribe(
-          (response: HttpResponse<any>) => {
-            resolve({
-              message: response.body.data.message, 
-              callback: () => {
-                // this.router.navigate(['/login']);
-              }
-            });
-          },
-          (errorMsg: string) => {
-            reject(errorMsg);
-          }
-        )
-    });
-  }
-  */
-
   handleResponseError(error: HttpErrorResponse) {
 
     // we are only forwarding a simple message to the client
