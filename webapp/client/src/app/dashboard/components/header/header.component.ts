@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit{
   constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute,private dataService: DataService) {
     this.route.params.pipe(first()).subscribe(params => {
       const memberId = params['memberId'];
-      console.log(params);
+      //console.log(params);
     })
   }
 
@@ -24,14 +24,6 @@ export class HeaderComponent implements OnInit{
   }
 
   goToMemberProfile(){
-    // this.route.params.pipe(first()).subscribe(params => {
-    //   const memberId = params['memberId'];
-      
-    //   if(memberId === this.user!.id){
-    //     this.dataService.refreshProfile$.next(this.user!.id);
-    //   }else{
-    //   }
-    // });
     this.router.navigate(['/dashboard/profile', this.user!.id]);
   }
 

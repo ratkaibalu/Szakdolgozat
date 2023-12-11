@@ -79,6 +79,4 @@ export class SkillTableComponent implements OnInit {
       this.memberSkills$.next(result.members);
     });
   }
-
-  
 }

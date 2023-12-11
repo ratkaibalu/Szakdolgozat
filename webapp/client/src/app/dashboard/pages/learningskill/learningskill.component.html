@@ -5,11 +5,12 @@
                 <span class="skill-name">{{skillName}}</span>
                 <ng-container *ngIf="isAdmin">
                     <a *ngIf="!isEditing" role="button" class="btn btn-light skill-edit-button"
-                        (click)="toggleEdit()">Edit
+                        (click)="toggleEdit()"><i class="bi bi-pencil-fill button-icon"></i>Edit
                         page</a>
                 </ng-container>
 
-                <a *ngIf="isEditing" role="button" class="btn btn-light skill-edit-button" (click)="saveEdit()">Leave editing mode</a>
+                <a *ngIf="isEditing" role="button" class="btn btn-light skill-edit-button" (click)="saveEdit()"><i
+                    class="bi bi-pencil button-icon"></i>Leave editing mode</a>
             </div>
             <div class="content-div m-4">
                 <div class="row m-2 mb-3">
@@ -29,13 +30,13 @@
                         <ng-container *ngIf="isEditing">
                             <ng-container *ngFor="let wiki_link of wikiLinks">
                                 <div class="form-floating mb-1">
-                                    <input class="form-control" (change)="saveSkillLinkName($event, wiki_link.skill_links_id)" id="'wikiLinkNameInput' + {{wiki_link.skill_links_id}}"
+                                    <input class="form-control" maxlength="64" (change)="saveSkillLinkName($event, wiki_link.skill_links_id)" id="'wikiLinkNameInput' + {{wiki_link.skill_links_id}}"
                                         value="{{wiki_link.skill_linkname}}">
                                     <label for="'wikiLinkNameInput' + {{wiki_link.skill_links_id}}">Link
                                         name</label>
                                 </div>
                                 <div class="form-floating mb-2">
-                                    <input class="form-control" (change)="saveSkillLinkUrl($event, wiki_link.skill_links_id)" id="'wikiLinkURLInput'  + {{wiki_link.skill_links_id}}"
+                                    <input class="form-control" maxlength="1024" (change)="saveSkillLinkUrl($event, wiki_link.skill_links_id)" id="'wikiLinkURLInput'  + {{wiki_link.skill_links_id}}"
                                         value="{{wiki_link.skill_link}}">
                                     <label for="'wikiLinkURLInput'  + {{wiki_link.skill_links_id}}">Link URL</label>
                                     <button (click)="deleteLink(wiki_link.skill_links_id)" type="button"
@@ -66,14 +67,14 @@
                         <ng-container *ngIf="isEditing">
                             <ng-container *ngFor="let video_link of videoLinks">
                                 <div class="form-floating mb-1">
-                                    <input class="form-control" (change)="saveSkillLinkName($event, video_link.skill_links_id)"
+                                    <input class="form-control"  maxlength="64" (change)="saveSkillLinkName($event, video_link.skill_links_id)"
                                         id="'videoLinkNameInput' + {{video_link.skill_links_id}}"
                                         value="{{video_link.skill_linkname}}">
                                     <label for="'videoLinkNameInput' + {{video_link.skill_links_id}}">Link
                                         name</label>
                                 </div>
                                 <div class="form-floating mb-2">
-                                    <input class="form-control" (change)="saveSkillLinkUrl($event, video_link.skill_links_id)"
+                                    <input class="form-control"  maxlength="1024" (change)="saveSkillLinkUrl($event, video_link.skill_links_id)"
                                         id="'videoLinkURLInput'  + {{video_link.skill_links_id}}"
                                         value="{{video_link.skill_link}}">
                                     <label for="'videoLinkURLInput'  + {{video_link.skill_links_id}}">Link
@@ -106,14 +107,14 @@
                         <ng-container *ngIf="isEditing">
                             <ng-container *ngFor="let other_link of otherLinks">
                                 <div class="form-floating mb-1">
-                                    <input class="form-control" (change)="saveSkillLinkName($event, other_link.skill_links_id)"
+                                    <input class="form-control"  maxlength="64" (change)="saveSkillLinkName($event, other_link.skill_links_id)"
                                         id="'otherLinkNameInput' + {{other_link.skill_links_id}}"
                                         value="{{other_link.skill_linkname}}">
                                     <label for="'otherLinkNameInput' + {{other_link.skill_links_id}}">Link
                                         name</label>
                                 </div>
                                 <div class="form-floating mb-2">
-                                    <input class="form-control" (change)="saveSkillLinkUrl($event, other_link.skill_links_id)"
+                                    <input class="form-control"  maxlength="1024" (change)="saveSkillLinkUrl($event, other_link.skill_links_id)"
                                         id="'otherLinkURLInput'  + {{other_link.skill_links_id}}"
                                         value="{{other_link.skill_link}}">
                                     <label for="'otherLinkURLInput'  + {{other_link.skill_links_id}}">Link

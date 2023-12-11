@@ -23,6 +23,6 @@ export class CustomRouterReuseStrategy extends RouteReuseStrategy {
         return {};
     }
     shouldReuseRoute(future: ActivatedRouteSnapshot, curr: ActivatedRouteSnapshot): boolean {
-        return future.routeConfig === curr.routeConfig && future.params['page'] === curr.params['page'];
+        return future.routeConfig === curr.routeConfig && future.params['memberId'] === curr.params['memberId'];
     }
 }

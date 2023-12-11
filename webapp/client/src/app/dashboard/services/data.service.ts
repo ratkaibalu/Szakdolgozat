@@ -1,25 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
-import { MemberModel, SkillMemberModel, SkillModel } from '../models/data.model';
+import { MemberModel, SkillMemberModel, SkillModel, TeamModel } from '../models/data.model';
 
 @Injectable()
 export class DataService {
   protected readonly apiUrl = '/api';
-  public refreshProfile$ = new Subject<number>();
 
   constructor(private http: HttpClient) { }
 
   // GET
-  getMembers() {
-    return this.http.get(`${this.apiUrl}/members`);
+  getTeams(): Observable<TeamModel[]> {
+    return this.http.get<TeamModel[]>(`${this.apiUrl}/teams`);
   }
 
-  getTeams() {
-    return this.http.get(`${this.apiUrl}/teams`);
-  }
-
-  getCategories() {
+  getCategories(): Observable<MemberModel[]> {
     return this.http.get<MemberModel[]>(`${this.apiUrl}/category`);
   }
 
@@ -189,7 +184,7 @@ export class DataService {
   deleteSkillLinks(skillId: number){
     const data = { skillId };
     return this.http.delete(`${this.apiUrl}/skill/skill_links`, {body: data});
-  
+
   }
 
   deleteSkill(skillId: number){

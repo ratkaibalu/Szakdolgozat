@@ -24,7 +24,6 @@ export class AuthController {
 
   public registerEndpoints() {
     this.router.post("/login", this.login.bind(this));
-    this.router.post("/register", this.register.bind(this));
     this.router.get("/logout", this.logout.bind(this)); //  this.authGuard.bind(this)
   }
 
@@ -72,10 +71,6 @@ export class AuthController {
           message: 'Logged out.'
         }
       });
-  }
-
-  private register(req: express.Request, res: express.Response) {
-    // TODO: genereate pw hash with bcrypt
   }
 
   /**

@@ -9,11 +9,11 @@
             </div>
             <ng-container *ngIf="canEdit()">
                 <a *ngIf="!isEditing" role="button" class="btn btn-light profile-button" (click)="toggleEdit()"><i
-                        class="bi bi-pencil-fill"></i>Edit
+                        class="bi bi-pencil-fill button-icon"></i>Edit
                     profile</a>
             </ng-container>
             <a *ngIf="isEditing" role="button" class="btn btn-light profile-button" (click)="saveEdit()"><i
-                    class="bi bi-pencil"></i>Leave
+                    class="bi bi-pencil button-icon"></i>Leave
                 editing mode</a>
         </div>
         <div class="availability list-group list-group-flush">
@@ -64,7 +64,7 @@
                     <div *ngIf="isEditing" class="form-floating mb-3">
                         <textarea value="{{member.about}}" maxlength="2048" class="form-control" id="about-textarea"
                             placeholder="About" aria-label="About" (change)="saveMemberAbout($event)"></textarea>
-                        <label for="about-textarea">Roles</label>
+                        <label for="about-textarea">About</label>
                     </div>
                 </div>
             </div>

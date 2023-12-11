@@ -17,7 +17,6 @@
     color: white;
 }
 .tags{
-    height: 100px;
     white-space:nowrap;
     margin-top: 5px;
 }
@@ -30,7 +29,8 @@
     color: white;
     border-radius: 5px;
     float: left;
-
+    max-width: 95%;
+    text-wrap: initial;
 }
 
 .noSkills {

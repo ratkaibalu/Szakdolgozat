@@ -16,7 +16,6 @@ export interface SkillMemberModel extends SkillModel {
     skillLevel: number;
 }
 
-
 export interface TeamModel {
     id: number;
     name: string;

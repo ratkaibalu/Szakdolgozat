@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './pages/login/login.component';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './guards/auth.guard';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RegistrationComponent } from './pages/registration/registration.component';
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { SharedModule } from '../shared/shared.module';
@@ -18,7 +17,6 @@ export const AUTH_PROVIDERS = [
 
 export const COMPONENTS = [
   LoginComponent,
-  RegistrationComponent
 ];
 
 @NgModule({
@@ -28,7 +26,6 @@ export const COMPONENTS = [
   imports: [
     CommonModule,
     FormsModule,
-    // ReactiveFormsModule,
     HttpClientModule,
     SharedModule
   ],
@@ -48,7 +45,6 @@ export class AuthModule {
   static forRoot(): ModuleWithProviders<AuthModule> {
     return <ModuleWithProviders<AuthModule>>{
       ngModule: AuthModule,
-      // exports: [...COMPONENTS],
       providers: [
         ...AUTH_PROVIDERS,
       ],

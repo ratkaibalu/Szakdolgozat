@@ -1,16 +1,19 @@
 .info-bar-table{
     background-color: var(--maincolor);
-    border-radius: 5px;
+    border-radius: 7px 7px 0px 0px;
     padding:10px;
-    margin: 10px;
     line-height: 1;
+}
+.card{
+    border: none;
+    box-shadow: rgba(65, 69, 88, 0.1) 0px 7px 14px 0px, rgba(0, 0, 0, 0.07) 0px 3px 6px 0px ;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+.all-team-members {
+    color: white;
 }
 
 i{
     margin-right: 5px;
 }
-
-.all-team-members {
-    color: white;
-}
-

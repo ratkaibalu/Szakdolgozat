@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/guards/auth.guard';
 import { LoginComponent } from './auth/pages/login/login.component';
-import { RegistrationComponent } from './auth/pages/registration/registration.component';
 
 const routes: Routes = [
   { 
@@ -14,17 +13,12 @@ const routes: Routes = [
     path: 'auth/login',
     component: LoginComponent,
   },
-  {
-    path: 'auth/register',
-    component: RegistrationComponent,
-  },
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: '**', redirectTo: '/dashboard' },
+  { path: '', redirectTo: '/dashboard/teams', pathMatch: 'full' },
+  { path: '**', redirectTo: '/dashboard/teams' },
 ];
 
 @NgModule({
-  //imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload'})],
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
