@@ -8,7 +8,7 @@
             <tr>
                 <th class="team-member-name-header">Team Member</th>
                 <th class="team-member-name-header" *ngIf="teamId === null"> Team Name</th>
-                <th [ngClass]="{'searched-skill' : searchedSkill === skill.skillName.toLowerCase()}" class="skill-name-header" id="skill-name-{{skill.skillName.toLowerCase()}}" *ngFor="let skill of allSkills">{{skill.skillName}}</th>
+                <th #skillHeader [ngClass]="{'searched-skill' : searchedSkill === skill.skillName.toLowerCase()}" class="skill-name-header" id="skill-name-{{skill.skillName.toLowerCase()}}" *ngFor="let skill of allSkills">{{skill.skillName}}</th>
             </tr>
         </thead>
         <tbody>

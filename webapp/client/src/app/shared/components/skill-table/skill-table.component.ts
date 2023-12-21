@@ -1,8 +1,9 @@
-import { Component, Input, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ElementRef, ViewChildren, QueryList } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, forkJoin, map, take } from 'rxjs';
 import { DataService } from 'src/app/dashboard/services/data.service';
 import { MemberCell, MemberModel, SkillModel } from 'src/app/dashboard/models/data.model';
+import { ViewportScroller } from '@angular/common';
 
 
 @Component({
@@ -12,6 +13,7 @@ import { MemberCell, MemberModel, SkillModel } from 'src/app/dashboard/models/da
 })
 export class SkillTableComponent implements OnInit {
   @Input() teamId: number | null = null;
+  @ViewChildren('skillHeader') skillHeaders!: QueryList<ElementRef<HTMLElement>>;
 
   public allSkills: SkillModel[] = [];
   public inputSkillName: string = "";
@@ -46,17 +48,14 @@ export class SkillTableComponent implements OnInit {
   );
 
   searchSkillName(){
-    var table = document.getElementById('table-div');
-    var element = document.getElementById('skill-name-' + this.inputSkillName.toLowerCase());
-    var pos = element?.getBoundingClientRect().left; 
-    
-    if(pos != undefined){
-      table?.scrollBy({
-        left: pos - (document.documentElement.clientWidth/3),
-        behavior: "smooth"
-      })
+    const id = 'skill-name-' + this.inputSkillName.toLowerCase();
 
-      if(this.timeoutId) {
+    const foundSkill = this.skillHeaders.toArray().find( data => data.nativeElement.id === id);
+
+    if(foundSkill){
+      foundSkill.nativeElement.scrollIntoView({ behavior: "smooth", inline: "center"});
+
+        if(this.timeoutId) {
         clearTimeout(this.timeoutId);
       }
 
@@ -67,7 +66,7 @@ export class SkillTableComponent implements OnInit {
     }
   }
 
-  constructor(private router: Router, private dataService: DataService) {}
+  constructor(private router: Router, private dataService: DataService, private scroller: ViewportScroller) {}
 
   ngOnInit() {
     forkJoin({

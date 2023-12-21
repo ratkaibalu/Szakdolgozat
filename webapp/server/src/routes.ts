@@ -21,9 +21,29 @@ dataRouter.get('/skills/:id', (req, res) => {
 });
 
 dataRouter.get('/category', (req, res) => {
-    db.query<RowDataPacket[]>(`Select skill_id,skill_name,Skills.category_id,category_name, category_image,category_description
-    from Skills,Categories
-    Where Skills.category_id = Categories.category_id`, (err, results) => {
+    db.query<RowDataPacket[]>(`SELECT 
+    s.skill_id,
+    s.skill_name,
+    s.category_id,
+    c.category_name,
+    c.category_image,
+    c.category_description
+FROM 
+    Skills s
+LEFT JOIN 
+    Categories c ON s.category_id = c.category_id
+UNION
+SELECT 
+    NULL AS skill_id,
+    NULL AS skill_name,
+    c.category_id,
+    c.category_name,
+    c.category_image,
+    c.category_description
+FROM 
+    Categories c
+WHERE 
+    c.category_id NOT IN (SELECT DISTINCT category_id FROM Skills WHERE category_id IS NOT NULL);`, (err, results) => {
         handleCategoryFlattenResult(err, res, results);
     });
 });

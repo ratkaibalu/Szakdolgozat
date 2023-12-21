@@ -16,6 +16,7 @@ export class LearningComponent implements OnInit{
   ngOnInit(): void {
     this.dataService.getCategories().subscribe((data: any) => {
       this.categories = data;
+      // console.log(this.categories);
     });
   }
 

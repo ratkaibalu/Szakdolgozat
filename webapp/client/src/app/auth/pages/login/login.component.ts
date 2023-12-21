@@ -18,7 +18,7 @@ export class LoginComponent {
     $event.preventDefault();
 
     this.authService.login(this.email, this.password).then((result => this.router.navigate(['/dashboard/teams']))).catch((error) => {
-      console.log(error);
+      // console.log(error);
       this.errorMsg = error.message;
     });
   }

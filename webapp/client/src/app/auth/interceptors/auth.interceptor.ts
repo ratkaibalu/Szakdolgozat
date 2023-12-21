@@ -25,7 +25,6 @@ export class AuthInterceptor implements HttpInterceptor {
           if (this.isUnAuthorized(error)) {
               // redirect to logout
               this.authService.logout('Your session has expired. Please login again.');
-            
           }
           return throwError(() => error);
         })

@@ -28,7 +28,7 @@ export class AuthController {
   }
 
   private login(req: express.Request, res: express.Response) {
-    console.log('login');
+    // console.log('login');
     const email = req.body.data.email as string;
     const password = req.body.data.password as string;
 
