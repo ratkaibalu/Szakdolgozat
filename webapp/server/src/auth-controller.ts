@@ -7,11 +7,11 @@ export class AuthController {
 
   private jwtSecret: string = "";
 
-  private readonly sessionTimeInMinutes = 100; // in minutes
+  private readonly sessionTimeInMinutes = 45; // in minutes
 
   // Help: 1 min = 60000 Ms
-  private readonly JWT_TOKEN_EXPIRATION = this.sessionTimeInMinutes * 60; // in seconds, providing for 30 minutes
-  private readonly COOKIE_EXPIRATION = this.sessionTimeInMinutes * 60 * 1000; // in milliseconds, providing for 30 minutes
+  private readonly JWT_TOKEN_EXPIRATION = this.sessionTimeInMinutes * 60; // in seconds
+  private readonly COOKIE_EXPIRATION = this.sessionTimeInMinutes * 60 * 1000; // in milliseconds
 
   constructor(private router: express.Router, private db: Connection) {
     const secret = (process.env.JWT_SECRET as string) || null;
@@ -24,29 +24,28 @@ export class AuthController {
 
   public registerEndpoints() {
     this.router.post("/login", this.login.bind(this));
-    this.router.get("/logout", this.logout.bind(this)); //  this.authGuard.bind(this)
+    this.router.get("/logout", this.logout.bind(this)); 
   }
 
   private login(req: express.Request, res: express.Response) {
-    // console.log('login');
     const email = req.body.data.email as string;
     const password = req.body.data.password as string;
 
     try {
-      this.db.query<RowDataPacket[]>(`SELECT member_id, member_name, email, isAdmin, passwordHash FROM Members WHERE email = "${email}" Limit 1`, (err, results) => {
+      this.db.query<RowDataPacket[]>(`SELECT member_id, member_name, email, is_admin, password_hash FROM Members WHERE email = "${email}" Limit 1`, (err, results) => {
         if (err) {
           res.status(401).json({ message: 'Error occured.' });
         } else {
           const user = results[0];
 
-          if ( user && bcrypt.compareSync(password, user.passwordHash)) {
+          if ( user && bcrypt.compareSync(password, user.password_hash)) {
             this.generateTokenIntoCookie(res, user.member_id);
             res.status(200).json({
               user: {
                 id: user.member_id,
                 name: user.member_name,
                 email: user.email,
-                isAdmin: user.isAdmin === 1
+                isAdmin: user.is_admin === 1
               }
             });
           }else {
@@ -83,9 +82,6 @@ export class AuthController {
       try {
         const decoded = await jwt.verify(token, this.jwtSecret);
 
-        // optionally query user from database and set in req
-        // req.user = await User.findById(decoded.userId).select('-password');
-
         next();
       } catch (error) {
         console.error(error);
@@ -104,11 +100,10 @@ export class AuthController {
     const cookieExpires = new Date(Date.now() + this.COOKIE_EXPIRATION);
 
     res.cookie('jwt', token, {
-      httpOnly: true, // frontend scripts can not read
-      secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
-      sameSite: 'strict', // Prevent CSRF attacks
-      expires: cookieExpires, // IE compatible
-      // maxAge: this.COOKIE_EXPIRATION
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production', 
+      sameSite: 'strict', 
+      expires: cookieExpires,
     });
   }
 

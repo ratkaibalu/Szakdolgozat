@@ -75,8 +75,8 @@ dataRouter.get('/category/:id', (req, res) => {
     });
 });
 
-dataRouter.get('/memberskills', (req, res) => {
-    db.query<RowDataPacket[]>('SELECT * FROM MemberSkills', (err, results) => {
+dataRouter.get('/member_skills', (req, res) => {
+    db.query<RowDataPacket[]>('SELECT * FROM member_skills', (err, results) => {
         handleQueryResult(err, res, results);
     });
 });
@@ -91,12 +91,12 @@ SELECT
   skill_level,
   Teams.team_id,
   team_name
-FROM teammembers
-JOIN Members ON Members.member_id = teammembers.member_id
-LEFT JOIN MemberSkills ON Members.member_id = MemberSkills.member_id
-LEFT JOIN Skills ON Skills.skill_id = MemberSkills.skill_id
-JOIN Teams ON Teams.team_id = teammembers.team_id
-WHERE canBeInMultipleTeam = false
+FROM team_members
+JOIN Members ON Members.member_id = team_members.member_id
+LEFT JOIN member_skills ON Members.member_id = member_skills.member_id
+LEFT JOIN Skills ON Skills.skill_id = member_skills.skill_id
+JOIN Teams ON Teams.team_id = team_members.team_id
+WHERE can_be_in_multiple_team = false
 UNION
 SELECT 
   members.member_id,
@@ -107,9 +107,9 @@ SELECT
   NULL AS team_id,
   NULL AS team_name
 FROM members
-LEFT JOIN memberskills ON Members.member_id = MemberSkills.member_id
-LEFT JOIN Skills ON Skills.skill_id = memberskills.skill_id
-WHERE canBeInMultipleTeam = true;`, (err, results) => {
+LEFT JOIN member_skills ON Members.member_id = member_skills.member_id
+LEFT JOIN Skills ON Skills.skill_id = member_skills.skill_id
+WHERE can_be_in_multiple_team = true;`, (err, results) => {
     handleSkillFlattenResult(err, res, results);
     });
 });
@@ -123,7 +123,7 @@ dataRouter.get('/members/:id', (req, res) => {
 
 dataRouter.get('/members/:id/skills', (req, res) => {
     const id = parseInt(req.params.id);
-    db.query<RowDataPacket[]>(`select skill_name,skills.skill_id,skill_level from skills,memberskills where skills.skill_id = memberskills.skill_id and member_id = ${id}`, (err, results) => {
+    db.query<RowDataPacket[]>(`select skill_name,skills.skill_id,skill_level from skills,member_skills where skills.skill_id = member_skills.skill_id and member_id = ${id}`, (err, results) => {
         handleQueryResult(err, res, results);
     });
 });
@@ -131,8 +131,8 @@ dataRouter.get('/members/:id/skills', (req, res) => {
 dataRouter.get('/teams/:id/members', (req, res) => {
     const id = parseInt(req.params.id);
     db.query<RowDataPacket[]>(`select member_name
-  from Members,Teammembers
-  Where Members.member_id = teammembers.member_id and team_id = ${id}`, (err, results) => {
+  from Members,team_members
+  Where Members.member_id = team_members.member_id and team_id = ${id}`, (err, results) => {
         handleQueryResult(err, res, results);
     });
 });
@@ -140,10 +140,10 @@ dataRouter.get('/teams/:id/members', (req, res) => {
 dataRouter.get('/teams/:id/members/skills', (req, res) => {
     const id = parseInt(req.params.id);
     db.query<RowDataPacket[]>(`SELECT Members.member_id,member_name,skill_name,Skills.skill_id,skill_level,Teams.team_id,team_name 
-  FROM Teammembers,Members 
-  left join MemberSkills on Members.member_id = MemberSkills.member_id
-  left join Skills on Skills.skill_id = MemberSkills.skill_id
-  ,Teams WHERE Members.member_id = teammembers.member_id and Teams.team_id = teammembers.team_id AND Teams.team_id = ${id}`, (err, results) => {
+  FROM team_members,Members 
+  left join member_skills on Members.member_id = member_skills.member_id
+  left join Skills on Skills.skill_id = member_skills.skill_id
+  ,Teams WHERE Members.member_id = team_members.member_id and Teams.team_id = team_members.team_id AND Teams.team_id = ${id}`, (err, results) => {
         handleSkillFlattenResult(err, res, results);
     });
 });
@@ -164,7 +164,7 @@ dataRouter.get('/teams', (req, res) => {
 
 dataRouter.get('/category/skills/members/:id', (req, res) => {
     const id = parseInt(req.params.id);
-    db.query<RowDataPacket[]>(`Select member_name,Members.member_id, skill_level From members, memberskills Where Members.member_id = memberskills.member_id and skill_level >= 3 and skill_id = ${id}`, (err, results) => {
+    db.query<RowDataPacket[]>(`Select member_name,Members.member_id, skill_level From members, member_skills Where Members.member_id = member_skills.member_id and skill_level >= 3 and skill_id = ${id}`, (err, results) => {
         handleQueryResult(err, res, results);
     });
 });
@@ -178,7 +178,7 @@ dataRouter.get('/category/:id/name', (req, res) => {
 
 dataRouter.get('/category_links/:id', (req, res) => {
     const id = parseInt(req.params.id);
-    db.query<RowDataPacket[]>(`select categorylinks_id, category_link, category_linkname from categories_links where category_id = ${id};`, (err, results) => {
+    db.query<RowDataPacket[]>(`select category_links_id, category_link, category_linkname from categories_links where category_id = ${id};`, (err, results) => {
         handleQueryResult(err, res, results);
     });
 });
@@ -187,9 +187,9 @@ dataRouter.get('/teams/:id/members/add', (req, res) => {
     const id = parseInt(req.params.id);
     db.query<RowDataPacket[]>(`select m.member_id, m.member_name from Members as m left join
   (select member_id, member_name from (
-    Select * from Members natural join Teammembers where canBeInMultipleTeam is false
+    Select * from Members natural join team_members where can_be_in_multiple_team is false
     union 
-    select * from Members natural join Teammembers where canBeInMultipleTeam is true and team_id = ${id}
+    select * from Members natural join team_members where can_be_in_multiple_team is true and team_id = ${id}
   ) as un ) as ub on m.member_id = ub.member_id
   where ub.member_id is null;`, (err, results) => {
         handleQueryResult(err, res, results);
@@ -216,7 +216,7 @@ dataRouter.post('/category/skills', (req, res) => {
 
 dataRouter.post('/category_links', (req, res) => {
     const categoryId = parseInt(req.body.categoryId);
-    db.query<RowDataPacket[]>(`INSERT INTO categories_links (categorylinks_id, category_id, category_link, category_linkname) VALUES (null,${categoryId}, "","");`, (err, results) => {
+    db.query<RowDataPacket[]>(`INSERT INTO categories_links (category_links_id, category_id, category_link, category_linkname) VALUES (null,${categoryId}, "","");`, (err, results) => {
         handleQueryResult(err, res, results);
     });
 });
@@ -231,7 +231,7 @@ dataRouter.post('/teams', (req, res) => {
 dataRouter.post('/teams/members', (req, res) => {
     const memberId = req.body.memberId;
     const teamId = req.body.teamId;
-    db.query<RowDataPacket[]>(`INSERT INTO teammembers (member_id, team_id) VALUES (${memberId}, ${teamId});`, (err, results) => {
+    db.query<RowDataPacket[]>(`INSERT INTO team_members (member_id, team_id) VALUES (${memberId}, ${teamId});`, (err, results) => {
         handleQueryResult(err, res, results);
     });
 });
@@ -240,7 +240,7 @@ dataRouter.post('/member/skill', (req, res) => {
     const member_id = parseInt(req.body.memberId);
     const skill_id = parseInt(req.body.skillId);
     const skill_level = parseInt(req.body.skillLevel);
-    db.query<RowDataPacket[]>(`INSERT INTO Memberskills (member_id, skill_id, skill_level) values (${member_id},${skill_id},${skill_level});`, (err, results) => {
+    db.query<RowDataPacket[]>(`INSERT INTO member_skills (member_id, skill_id, skill_level) values (${member_id},${skill_id},${skill_level});`, (err, results) => {
         handleEmptyBracketsResult(err, res);
     });
 });
@@ -258,7 +258,7 @@ dataRouter.put('/member/skill', (req, res) => {
     const member_id = parseInt(req.body.memberId);
     const skill_id = parseInt(req.body.skillId);
     const skill_level = parseInt(req.body.skillLevel);
-    db.query<RowDataPacket[]>(`UPDATE MemberSkills SET skill_level = "${skill_level}" WHERE member_id = ${member_id} and skill_id = ${skill_id}; `, (err, results) => {
+    db.query<RowDataPacket[]>(`UPDATE member_skills SET skill_level = "${skill_level}" WHERE member_id = ${member_id} and skill_id = ${skill_id}; `, (err, results) => {
         handleDataUpdateResult(err, res);
     });
 });
@@ -317,8 +317,7 @@ dataRouter.put('/category/description', (req, res) => {
 dataRouter.put('/category/linkname', (req, res) => {
     const linkId = parseInt(req.body.linkId);
     const linkName = req.body.categoryLinkName;
-
-    db.query<RowDataPacket[]>(`UPDATE categories_links SET category_linkname = "${linkName}" WHERE categorylinks_id = ${linkId};`, (err, results) => {
+    db.query<RowDataPacket[]>(`UPDATE categories_links SET category_linkname = "${linkName}" WHERE category_links_id = ${linkId};`, (err, results) => {
         handleDataUpdateResult(err, res);
     });
 });
@@ -326,7 +325,7 @@ dataRouter.put('/category/linkname', (req, res) => {
 dataRouter.put('/category/link', (req, res) => {
     const linkId = parseInt(req.body.linkId);
     const link = req.body.categoryLink;
-    db.query<RowDataPacket[]>(`UPDATE categories_links SET category_link = "${link}" WHERE categorylinks_id = ${linkId};`, (err, results) => {
+    db.query<RowDataPacket[]>(`UPDATE categories_links SET category_link = "${link}" WHERE category_links_id = ${linkId};`, (err, results) => {
         handleDataUpdateResult(err, res);
     });
 });
@@ -369,9 +368,9 @@ dataRouter.delete('/category/skills', (req, res) => {
     });
 });
 
-dataRouter.delete('/memberskills/skills', (req, res) => {
+dataRouter.delete('/member_skills/skills', (req, res) => {
     const skill_id = parseInt(req.body.skillId);
-    db.query<RowDataPacket[]>(`DELETE FROM memberskills WHERE skill_id = ${skill_id}`, (err, results) => {
+    db.query<RowDataPacket[]>(`DELETE FROM member_skills WHERE skill_id = ${skill_id}`, (err, results) => {
         handleQueryResult(err, res, results);
     });
 });
@@ -379,7 +378,7 @@ dataRouter.delete('/memberskills/skills', (req, res) => {
 
 dataRouter.delete('/category_links', (req, res) => {
     const categoryLinkId = parseInt(req.body.categoryLinkId);
-    db.query<RowDataPacket[]>(`DELETE FROM categories_links WHERE categorylinks_id = ${categoryLinkId}`, (err, results) => {
+    db.query<RowDataPacket[]>(`DELETE FROM categories_links WHERE category_links_id = ${categoryLinkId}`, (err, results) => {
         handleQueryResult(err, res, results);
     });
 });
@@ -393,7 +392,7 @@ dataRouter.delete('/teams', (req, res) => {
 
 dataRouter.delete('/teammembers', (req, res) => {
     const teamId = parseInt(req.body.teamId);
-    db.query<RowDataPacket[]>(`DELETE FROM teammembers where team_id = ${teamId};`, (err, results) => {
+    db.query<RowDataPacket[]>(`DELETE FROM team_members where team_id = ${teamId};`, (err, results) => {
         handleQueryResult(err, res, results);
     });
 });
@@ -401,7 +400,7 @@ dataRouter.delete('/teammembers', (req, res) => {
 dataRouter.delete('/teams/member', (req, res) => {
     const teamId = parseInt(req.body.teamId);
     const memberId = parseInt(req.body.memberId);
-    db.query<RowDataPacket[]>(`DELETE FROM teammembers where team_id = ${teamId} AND member_id = ${memberId};`, (err, results) => {
+    db.query<RowDataPacket[]>(`DELETE FROM team_members where team_id = ${teamId} AND member_id = ${memberId};`, (err, results) => {
         handleQueryResult(err, res, results);
     });
 });
@@ -409,7 +408,7 @@ dataRouter.delete('/teams/member', (req, res) => {
 dataRouter.delete('/member/skill', (req, res) => {
     const skillId = parseInt(req.body.skillId);
     const memberId = parseInt(req.body.memberId);
-    db.query<RowDataPacket[]>(`DELETE FROM MemberSkills where skill_id = ${skillId} AND member_id = ${memberId};`, (err, results) => {
+    db.query<RowDataPacket[]>(`DELETE FROM member_skills where skill_id = ${skillId} AND member_id = ${memberId};`, (err, results) => {
         handleQueryResult(err, res, results);
     });
 });

@@ -62,7 +62,7 @@ export function flattenCategories(SqlResultArray: RowDataPacket[]) {
 
 export function handleQueryResult(err: QueryError | null, res: any, results: RowDataPacket[]) {
     if (err) {
-        res.status(500).json({ error: '' });
+        res.status(500).json({ error: 'Error during the query' });
     } else {
         res.status(200).json(results);
     }

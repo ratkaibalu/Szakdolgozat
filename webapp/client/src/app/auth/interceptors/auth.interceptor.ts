@@ -17,8 +17,6 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
 
-    // const userState = this.userSessionService.currentState.state;
-    // const cloned = req.clone();
     return next.handle(req)
       .pipe(
         catchError((error: any, caught: Observable<HttpEvent<any>>) => {

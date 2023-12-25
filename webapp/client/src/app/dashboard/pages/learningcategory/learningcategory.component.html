@@ -85,19 +85,19 @@
                             <ng-container *ngFor="let other_link of otherLinks">
                                 <div class="form-floating mb-1">
                                     <input class="form-control"  maxlength="64"
-                                        id="'otherLinkNameInput' + {{other_link.categorylinks_id}}"
+                                        id="'otherLinkNameInput' + {{other_link.category_links_id}}"
                                         value="{{other_link.category_linkname}}"
-                                        (change)="saveCategoryLinkName($event, other_link.categorylinks_id)">
-                                    <label for="'otherLinkNameInput' + {{other_link.categorylinks_id}}">Link
+                                        (change)="saveCategoryLinkName($event, other_link.category_links_id)">
+                                    <label for="'otherLinkNameInput' + {{other_link.category_links_id}}">Link
                                         name</label>
                                 </div>
                                 <div class="form-floating mb-2">
                                     <input class="form-control"  maxlength="1024"
-                                        id="'otherLinkURLInput'  + {{other_link.categorylinks_id}}"
+                                        id="'otherLinkURLInput'  + {{other_link.category_links_id}}"
                                         value="{{other_link.category_link}}"
-                                        (change)="saveCategoryLink($event, other_link.categorylinks_id)">
-                                    <label for="'otherLinkURLInput'  + {{other_link.categorylinks_id}}">Link URL</label>
-                                    <button (click)="deleteLink(other_link.categorylinks_id)" type="button"
+                                        (change)="saveCategoryLink($event, other_link.category_links_id)">
+                                    <label for="'otherLinkURLInput'  + {{other_link.category_links_id}}">Link URL</label>
+                                    <button (click)="deleteLink(other_link.category_links_id)" type="button"
                                         class="btn btn-danger mt-1">Delete</button>
                                 </div>
                             </ng-container>

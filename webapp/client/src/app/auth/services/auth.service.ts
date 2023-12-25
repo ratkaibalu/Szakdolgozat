@@ -27,7 +27,6 @@ export class AuthService {
     .then((result: LoginSuccessResponse) => {
       // side effects
       this.localStorageService.setItem('user', result.user);
-      // this.router.navigate(['/dashboard']);
       return result;
     });
   }

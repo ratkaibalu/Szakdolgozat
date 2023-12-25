@@ -194,7 +194,7 @@ export class DataService {
 
   deleteMemberSkills(skillId: number){
     const data = { skillId };
-    return this.http.delete(`${this.apiUrl}/memberskills/skills`, {body: data});
+    return this.http.delete(`${this.apiUrl}/members_kills/skills`, {body: data});
   }
 
   deleteCategoryLink(categoryLinkId:number){
